@@ -11,11 +11,10 @@ int main() {
     }
     for (ligne = 0; ligne<=9; ligne++) {
         for (col = 0; col<=9; col++) {
-            if (col==9){
+            printf("%d",nombres[ligne][col]);
+            if (col>=9){
                 printf("\n");
             }
-            printf("%d",nombres[ligne][col]);
         }
-
     }
 }
