@@ -2,14 +2,15 @@
 #include <time.h>
 #include <stdlib.h>
 
-int main() {
+
+int jeu(){
     int nombres[10][10];
     int ligne, col;
     int pa1, pa2;
     int bi;
     int i;
     int co1, co2;
-    char lettre;
+    char lettre='s';
 
     srand((unsigned) time(NULL));
 
@@ -20,7 +21,7 @@ int main() {
     }
     for (ligne = 0; ligne <= 9; ligne++) {
         for (col = 0; col <= 9; col++) {
-            printf("%d", nombres[ligne][col]);
+            printf("%d  ", nombres[ligne][col]);
             if (col >= 9) {
                 printf("\n");
             }
@@ -46,49 +47,67 @@ int main() {
 //-------------------------------------------------------------
 //</editor-fold> l
 
-    printf("entrer une lettre");
-    scanf("%c", &lettre);
-    switch (lettre) {
-        case 'a':
-            co1 = 1;
-            break;
-        case 'b':
-            co1 = 2;
-            break;
-        case 'c':
-            co1 = 3;
-            break;
-        case 'd':
-            co1 = 4;
-            break;
-        case 'e':
-            co1 = 5;
-            break;
-        case 'f':
-            co1 = 6;
-            break;
-        case 'g':
-            co1 = 7;
-            break;
-        case 'h':
-            co1 = 8;
-            break;
-        case 'i':
-            co1 = 9;
-            break;
-        case 'j':
-            co1 = 10;
-            break;
-    }
+    do {
+        printf("\nentrer une lettre entre a et j : ");
+        scanf("%c",&lettre);
 
-    printf("entrer un nombre");
-    scanf("%d", &co2);
+        //<editor-fold desc="Vide le buffer">
+        while (lettre == '\n' && lettre != EOF)
+        {
+            lettre = getchar();
+        }
+        //</editor-fold>
+
+        //<editor-fold desc="De A à 0 ou B à 1 ...">
+        switch (lettre) {
+            case 'a':
+                co1 = 1;
+                break;
+            case 'b':
+                co1 = 2;
+                break;
+            case 'c':
+                co1 = 3;
+                break;
+            case 'd':
+                co1 = 4;
+                break;
+            case 'e':
+                co1 = 5;
+                break;
+            case 'f':
+                co1 = 6;
+                break;
+            case 'g':
+                co1 = 7;
+                break;
+            case 'h':
+                co1 = 8;
+                break;
+            case 'i':
+                co1 = 9;
+                break;
+            case 'j':
+                co1 = 10;
+                break;
+            default: co1=111;
+        }
+        //</editor-fold>
+
+    }while (co1==111);
+
+
+    do{
+        printf("entrer un nombre entre 1 et 10 : ");
+        scanf("%d", &co2);
+    }
+    while ((co2<1)||(co2>10));
     co2--;
     co1--;
 
     for (ligne = 0; ligne <= 9; ligne++) {
         for (col = 0; col <= 9; col++) {
-            printf("%d", nombres[ligne][col]);
+            printf("%d  ", nombres[ligne][col]);
             if (col >= 9) {
                 printf("\n");
             }
@@ -132,4 +151,8 @@ int main() {
         }
     }
 */
+}
+
+int main() {
+    jeu();
 }
