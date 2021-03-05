@@ -12,6 +12,7 @@ int jeu(){
     int co1, co2;
     char lettre='s';
     int d=0;
+    int coup=0;
 
     srand((unsigned) time(NULL));
 
@@ -107,21 +108,23 @@ int jeu(){
         co2--;
         co1--;
 
-        /*for (ligne = 0; ligne <= 9; ligne++) {
+        /*                                          //voir les bateaux
+        for (ligne = 0; ligne <= 9; ligne++) {
             for (col = 0; col <= 9; col++) {
                 printf("%d  ", nombres[ligne][col]);
                 if (col >= 9) {
                     printf("\n");
                 }
             }
-        }
-         */
+        }*/
+
         if (nombres[co2][co1] == 1) {
             printf("toucher");
+            d++;
         } else {
             printf("plouf\n");
-            d++;
         }
+        coup++;
     }while (d!=17);
 
     //<editor-fold desc="Bateau de 2 random à finir">
@@ -139,18 +142,34 @@ int jeu(){
     }
      */
 //</editor-fold>
+
+    printf("%d",coup);
+
 }
 
+int regle(){
+    printf("Le but :  couler tout les bateaux adverses\n"
+           "Fonctionnement :entrer des coordonnées et voir si sa touche un bateau\n\t\tsi un bateau est toucher detruire toute les cases sur les quelle est le bateau pour le couler\n"
+           "\n"
+           "il y a :"
+           "\n\t1 Porte-avions (5 cases)\n"
+           "\t1 Croiseur (4 cases)\n"
+           "\t2 Contre-torpilleurs (3 cases)\n"
+           "\t1 Torpilleur (2 cases)");
+}
 
 int main() {
     int a;
 
-    printf("Jouer 1");
-    printf("règle 4");
+    printf("Jouer 1\n");
+    printf("regle 4\n");
     scanf("%d",&a);
     switch (a) {
         case 1:
             jeu();
+            break;
+        case 4:
+            regle();
             break;
     }
 }
