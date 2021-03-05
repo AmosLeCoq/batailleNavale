@@ -12,6 +12,7 @@ int jeu(){
     int co1, co2;
     char lettre='s';
     int d=0;
+    int nawak = 0;
 
     srand((unsigned) time(NULL));
 
