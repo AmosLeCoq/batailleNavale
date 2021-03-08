@@ -33,7 +33,7 @@ int jeu(){
             }
         }
     }
-    do {
+
         //<editor-fold desc="code à remplacer en random (bateaux)">
         for (i = 0; i < 5; i++) { //bateau 5
             nombres[0][i] = 1;
@@ -51,6 +51,7 @@ int jeu(){
         }
 
     //-------------------------------------------------------------
+    do {
     //</editor-fold> l
         do {
             printf("\nentrer une lettre entre a et j : ");
@@ -109,23 +110,38 @@ int jeu(){
         co2--;
         co1--;
 
-        /*                                          //voir les bateaux
-        for (ligne = 0; ligne <= 9; ligne++) {
+
+        switch (nombres[co2][co1]) {
+            case 1:
+                printf("toucher\n");
+                d++;
+                break;
+            case 2:
+                printf("plouf\n");
+                break;
+            case 3:
+                break;
+        }
+
+        /*if (nombres[co2][co1] == 1) {
+            printf("toucher\n");
+            d++;
+        } else {
+            printf("plouf\n");
+        }*/
+        nombres[co2][co1]=2;
+        coup++;
+
+
+        for (ligne = 0; ligne <= 9; ligne++) {  //voir les bateaux
             for (col = 0; col <= 9; col++) {
                 printf("%d  ", nombres[ligne][col]);
                 if (col >= 9) {
                     printf("\n");
                 }
             }
-        }*/
-
-        if (nombres[co2][co1] == 1) {
-            printf("toucher");
-            d++;
-        } else {
-            printf("plouf\n");
         }
-        coup++;
+
     }while (d!=17);
 
     //<editor-fold desc="Bateau de 2 random à finir">
@@ -144,7 +160,7 @@ int jeu(){
      */
 //</editor-fold>
 
-    printf("%d",coup);
+    printf("Votre Score :%d",coup);
 
 }
 
