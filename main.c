@@ -112,30 +112,26 @@ int jeu(){
 
 
         switch (nombres[co2][co1]) {
+            case 0:
+                printf("plouf\n");
+                coup++;
+                break;
             case 1:
                 printf("toucher\n");
+                coup++;
                 d++;
                 break;
             case 2:
-                printf("plouf\n");
-                break;
-            case 3:
+                printf("Deja fait\n");
                 break;
         }
-
-        /*if (nombres[co2][co1] == 1) {
-            printf("toucher\n");
-            d++;
-        } else {
-            printf("plouf\n");
-        }*/
         nombres[co2][co1]=2;
-        coup++;
 
-
-        for (ligne = 0; ligne <= 9; ligne++) {  //voir les bateaux
+        printf("    A  B  C  D  E  F  G  H  I  J\n");   //voir les bateaux
+        for (ligne = 0; ligne <= 9; ligne++) {
+            printf("%2d",ligne+1);
             for (col = 0; col <= 9; col++) {
-                printf("%d  ", nombres[ligne][col]);
+                printf("%3d", nombres[ligne][col]);
                 if (col >= 9) {
                     printf("\n");
                 }
