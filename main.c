@@ -4,14 +4,14 @@
 
 
 int jeu(){
-    int nombres[10][10];
-    int ligne, col;
-    int pa1, pa2;
-    int bi;
-    int i;
-    int co1, co2;
-    char lettre='s';
-    int d=0;
+    int nombres[10][10];                // Tableau principale
+    int ligne, col;                     // Pour definire le tableau
+    int po1, po2;                       // Ramdom position
+    int binnaire;                       // Nombre random entre 0 et 1, pour orienter les bateaux verticalement ou orientalement
+    int i;                              // Pour des boucles for
+    int co1, co2;                       // Les coordonnée
+    char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
+    int d=0;                            // Nombre de case toucher
 
     int coup=0;
 
@@ -110,7 +110,6 @@ int jeu(){
         co2--;
         co1--;
 
-
         switch (nombres[co2][co1]) {
             case 0:
                 printf("plouf\n");
@@ -127,7 +126,7 @@ int jeu(){
         }
         nombres[co2][co1]=2;
 
-        printf("    A  B  C  D  E  F  G  H  I  J\n");   //voir les bateaux
+       /* printf("    A  B  C  D  E  F  G  H  I  J\n");             //voir les bateaux
         for (ligne = 0; ligne <= 9; ligne++) {
             printf("%2d",ligne+1);
             for (col = 0; col <= 9; col++) {
@@ -136,21 +135,21 @@ int jeu(){
                     printf("\n");
                 }
             }
-        }
+        }*/
 
     }while (d!=17);
 
     //<editor-fold desc="Bateau de 2 random à finir">
     /*
-    pa1=1+rand()%9;
-    pa2=1+rand()%9;
-    bi=1+rand()%2;
-    nombres[pa1][pa2]=1;
+    po1=1+rand()%9;
+    po2=1+rand()%9;
+    binnaire=1+rand()%2;
+    nombres[po1][po2]=1;
     for (int i=0;i<=1;i++) {
-        if (bi==1){
-            nombres[pa1++][pa2]=1;
+        if (binnaire==1){
+            nombres[po1++][po2]=1;
         } else{
-            nombres[pa1][pa2++]=1;
+            nombres[po1][po2++]=1;
         }
     }
      */
