@@ -12,8 +12,10 @@ int jeu(){
     int co1, co2;                       // Les coordonnée
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
+    int fin=0;
 
     int coup=0;
+
 
     srand((unsigned) time(NULL));
 
@@ -101,7 +103,7 @@ int jeu(){
             //</editor-fold>
 
         }while (co1==111);
-
+        if (fin!=1){
         do{
             printf("entrer un nombre entre 1 et 10 : ");
             scanf("%d", &co2);
@@ -126,7 +128,7 @@ int jeu(){
         }
         nombres[co2][co1]=2;
 
-       /* printf("    A  B  C  D  E  F  G  H  I  J\n");             //voir les bateaux
+        /*printf("    A  B  C  D  E  F  G  H  I  J\n");             //voir les bateaux
         for (ligne = 0; ligne <= 9; ligne++) {
             printf("%2d",ligne+1);
             for (col = 0; col <= 9; col++) {
@@ -136,7 +138,7 @@ int jeu(){
                 }
             }
         }*/
-
+        }
     }while (d!=17);
 
     //<editor-fold desc="Bateau de 2 random à finir">
