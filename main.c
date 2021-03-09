@@ -5,6 +5,7 @@
 
 void jeu(){
     int nombres[10][10];                // Tableau principale
+    int nombres2[10][10];               //Tableau secondaire (case touchée)
     int ligne, col;                     // Pour definire le tableau
     int po1, po2;                       // Ramdom position
     int binnaire;                       // Nombre random entre 0 et 1, pour orienter les bateaux verticalement ou orientalement
@@ -12,8 +13,6 @@ void jeu(){
     int co1, co2;                       // Les coordonnée
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
-    int fin=0;
-
     int coup=0;
 
 
@@ -27,7 +26,14 @@ void jeu(){
             nombres[ligne][col] = 0;
         }
     }
-    printf("\n--------------JOUER---------------\n\n");
+
+    for (ligne = 0; ligne <= 9; ligne++) {
+        for (col = 0; col <= 9; col++) {
+            nombres2[ligne][col] = 0;
+        }
+    }
+
+    printf("--------------JOUER---------------\n\n");
     printf("    A  B  C  D  E  F  G  H  I  J\n");
     for (ligne = 0; ligne <= 9; ligne++) {
         printf("%2d",ligne+1);
@@ -54,10 +60,11 @@ void jeu(){
         for (i = 5; i < 7; i++) { //bateau 2
             nombres[9][i] = 1;
         }
-
-    //-------------------------------------------------------------
-    do {
     //</editor-fold> l
+
+    //------------------------------------------------------------
+    do {
+
         do {
             printf("\nEntrer une lettre entre a et j : ");
             scanf("%c",&lettre);
@@ -106,14 +113,14 @@ void jeu(){
             //</editor-fold>
 
         }while (co1==111);
-        if (fin!=1){
-        do{
+        do {
             printf("Entrer un nombre entre 1 et 10 : ");
             scanf("%d", &co2);
-        }
-        while ((co2<1)||(co2>10));
+        } while ((co2 < 1) || (co2 > 10));
         co2--;
         co1--;
+
+        nombres2[co2][co1] = 1;
 
         switch (nombres[co2][co1]) {
             case 0:
@@ -129,7 +136,8 @@ void jeu(){
                 printf("\nDeja fait\n");
                 break;
         }
-        nombres[co2][co1]=2;
+        nombres[co2][co1] = 2;
+        nombres[co2][co1] = 2;
 
         /*printf("    A  B  C  D  E  F  G  H  I  J\n");             //voir les bateaux
         for (ligne = 0; ligne <= 9; ligne++) {
@@ -141,7 +149,17 @@ void jeu(){
                 }
             }
         }*/
+        printf("    A  B  C  D  E  F  G  H  I  J\n");
+        for (ligne = 0; ligne <= 9; ligne++) {
+            printf("%2d",ligne+1);
+            for (col = 0; col <= 9; col++) {
+                printf("%3d", nombres2[ligne][col]);
+                if (col >= 9) {
+                    printf("\n");
+                }
+            }
         }
+
     }while (d!=17);
 
     //<editor-fold desc="Bateau de 2 random à finir">
