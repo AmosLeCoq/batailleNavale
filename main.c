@@ -5,17 +5,15 @@
 
 void jeu(){
     int nombres[10][10];                // Tableau principale
-    int nombres2[10][10];               //Tableau secondaire (case touchée)
+    char nombres2[10][10];              // Tableau secondaire (case touchée)
     int ligne, col;                     // Pour definire le tableau
     int po1, po2;                       // Ramdom position
     int binnaire;                       // Nombre random entre 0 et 1, pour orienter les bateaux verticalement ou orientalement
     int i;                              // Pour des boucles for
-    int co1, co2;                       // Les coordonnée
+    int co1, co2;                       // Les coordonnée ex. nombres[co2][co1]=1; ligne 123
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
-    int coup=0;
-
-
+    int coup=0;                         // Nombre de coup
 
 
     srand((unsigned) time(NULL));
@@ -29,7 +27,7 @@ void jeu(){
 
     for (ligne = 0; ligne <= 9; ligne++) {
         for (col = 0; col <= 9; col++) {
-            nombres2[ligne][col] = 0;
+            nombres2[ligne][col] = 'O';
         }
     }
 
@@ -38,7 +36,7 @@ void jeu(){
     for (ligne = 0; ligne <= 9; ligne++) {
         printf("%2d",ligne+1);
         for (col = 0; col <= 9; col++) {
-            printf("%3d", nombres[ligne][col]);
+            printf("%3c", nombres2[ligne][col]);
             if (col >= 9) {
                 printf("\n");
             }
@@ -109,34 +107,34 @@ void jeu(){
                     co1 = 10;
                     break;
                 default: co1=111;
+                    break;
             }
             //</editor-fold>
 
         }while (co1==111);
         do {
             printf("Entrer un nombre entre 1 et 10 : ");
-            scanf("%d", &co2);
+            scanf("%d",&co2);
         } while ((co2 < 1) || (co2 > 10));
         co2--;
         co1--;
-
-        nombres2[co2][co1] = 1;
 
         switch (nombres[co2][co1]) {
             case 0:
                 printf("\nPlouf\n");
                 coup++;
+                nombres2[co2][co1] = '?';
                 break;
             case 1:
                 printf("\nToucher\n");
                 coup++;
                 d++;
+                nombres2[co2][co1] = 'X';
                 break;
             case 2:
                 printf("\nDeja fait\n");
                 break;
         }
-        nombres[co2][co1] = 2;
         nombres[co2][co1] = 2;
 
         /*printf("    A  B  C  D  E  F  G  H  I  J\n");             //voir les bateaux
@@ -149,11 +147,13 @@ void jeu(){
                 }
             }
         }*/
-        printf("    A  B  C  D  E  F  G  H  I  J\n");
+
+        system("cls");
+        printf("\n    A  B  C  D  E  F  G  H  I  J\n");
         for (ligne = 0; ligne <= 9; ligne++) {
             printf("%2d",ligne+1);
             for (col = 0; col <= 9; col++) {
-                printf("%3d", nombres2[ligne][col]);
+                printf("%3c", nombres2[ligne][col]);
                 if (col >= 9) {
                     printf("\n");
                 }
@@ -179,25 +179,32 @@ void jeu(){
 //</editor-fold>
 
     printf("Votre Score :%d",coup);
+    system("Pause");
 }
 
 void regle(){
-    printf("Le but :  couler tout les bateaux adverses\n"
-           "Fonctionnement :entrer des coordonnées et voir si sa touche un bateau\n\t\tsi un bateau est toucher detruire toute les cases sur les quelle est le bateau pour le couler\n"
+    printf("-------------Regle---------------\n\n");
+    printf("Le but :  couler tout les bateaux adverses\n\n"
+           "Fonctionnement :entrer des coordonnees et voir si sa touche un bateau\n\t\tsi un bateau est toucher detruire toute les cases sur les quelle est le bateau pour le couler\n"
            "\n"
            "il y a :"
            "\n\t1 Porte-avions (5 cases)\n"
            "\t1 Croiseur (4 cases)\n"
            "\t2 Contre-torpilleurs (3 cases)\n"
            "\t1 Torpilleur (2 cases)");
+    printf("\n");
+    system("Pause");
 }
 
-void main() {
+int main() {
     int a;
+    int fin;
 
     do{
-        printf("Jouer 1\n");
-        printf("regle 4\n");
+        system("cls");
+        printf("1 Jouer\n");
+        printf("2 regle\n");
+        printf("3 Quitter\n");
         scanf("%d",&a);
         switch (a) {
             case 1:
@@ -205,11 +212,15 @@ void main() {
                 printf("\n");
                 jeu();
                 break;
-            case 4:
+            case 2:
+                system("cls");
                 regle();
                 break;
+            case 3:
+                fin=5;
+            default:
+                break;
         }
-        system("Pause");
-    }while (a!=5);//definir !!!!!
+    }while (fin!=5);
 }
 
