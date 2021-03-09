@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 
-int jeu(){
+void jeu(){
     int nombres[10][10];                // Tableau principale
     int ligne, col;                     // Pour definire le tableau
     int po1, po2;                       // Ramdom position
@@ -17,6 +17,8 @@ int jeu(){
     int coup=0;
 
 
+
+
     srand((unsigned) time(NULL));
 
 
@@ -25,6 +27,7 @@ int jeu(){
             nombres[ligne][col] = 0;
         }
     }
+    printf("\n--------------JOUER---------------\n\n");
     printf("    A  B  C  D  E  F  G  H  I  J\n");
     for (ligne = 0; ligne <= 9; ligne++) {
         printf("%2d",ligne+1);
@@ -56,7 +59,7 @@ int jeu(){
     do {
     //</editor-fold> l
         do {
-            printf("\nentrer une lettre entre a et j : ");
+            printf("\nEntrer une lettre entre a et j : ");
             scanf("%c",&lettre);
 
             //<editor-fold desc="Vide le buffer">
@@ -105,7 +108,7 @@ int jeu(){
         }while (co1==111);
         if (fin!=1){
         do{
-            printf("entrer un nombre entre 1 et 10 : ");
+            printf("Entrer un nombre entre 1 et 10 : ");
             scanf("%d", &co2);
         }
         while ((co2<1)||(co2>10));
@@ -114,16 +117,16 @@ int jeu(){
 
         switch (nombres[co2][co1]) {
             case 0:
-                printf("plouf\n");
+                printf("\nPlouf\n");
                 coup++;
                 break;
             case 1:
-                printf("toucher\n");
+                printf("\nToucher\n");
                 coup++;
                 d++;
                 break;
             case 2:
-                printf("Deja fait\n");
+                printf("\nDeja fait\n");
                 break;
         }
         nombres[co2][co1]=2;
@@ -158,10 +161,9 @@ int jeu(){
 //</editor-fold>
 
     printf("Votre Score :%d",coup);
-
 }
 
-int regle(){
+void regle(){
     printf("Le but :  couler tout les bateaux adverses\n"
            "Fonctionnement :entrer des coordonnées et voir si sa touche un bateau\n\t\tsi un bateau est toucher detruire toute les cases sur les quelle est le bateau pour le couler\n"
            "\n"
@@ -172,19 +174,24 @@ int regle(){
            "\t1 Torpilleur (2 cases)");
 }
 
-int main() {
+void main() {
     int a;
 
-    printf("Jouer 1\n");
-    printf("regle 4\n");
-    scanf("%d",&a);
-    switch (a) {
-        case 1:
-            jeu();
-            break;
-        case 4:
-            regle();
-            break;
-    }
+    do{
+        printf("Jouer 1\n");
+        printf("regle 4\n");
+        scanf("%d",&a);
+        switch (a) {
+            case 1:
+                system("cls");
+                printf("\n");
+                jeu();
+                break;
+            case 4:
+                regle();
+                break;
+        }
+        system("Pause");
+    }while (a!=5);//definir !!!!!
 }
 
