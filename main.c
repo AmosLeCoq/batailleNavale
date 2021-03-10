@@ -13,9 +13,7 @@ void jeu(){
     int d=0;                            // Nombre de case toucher
     int coup=0;                         // Nombre de coup
 
-    srand((unsigned) time(NULL));
-
-
+    //<editor-fold desc="Mise à zero des tableaux">
     for (ligne = 0; ligne <= 9; ligne++) {
         for (col = 0; col <= 9; col++) {
             nombres[ligne][col] = 0;
@@ -27,7 +25,9 @@ void jeu(){
             nombres2[ligne][col] = 'O';
         }
     }
+    //</editor-fold>
 
+    //<editor-fold desc="affichage du tableau de départ">
     printf("--------------JOUER---------------\n\n");
     printf("    A  B  C  D  E  F  G  H  I  J\n");
     for (ligne = 0; ligne <= 9; ligne++) {
@@ -39,8 +39,9 @@ void jeu(){
             }
         }
     }
+    //</editor-fold>
 
-        //<editor-fold desc="code à remplacer en random (bateaux)">
+        //<editor-fold desc="code à remplacer en random (mise en place des bateaux)">
         for (i = 0; i < 5; i++) { //bateau 5
             nombres[0][i] = 1;
         }
@@ -57,9 +58,9 @@ void jeu(){
         }
     //</editor-fold> l
 
-    //------------------------------------------------------------
     do {
 
+        //<editor-fold desc="entrées des coordonnées">
         do {
             printf("\nEntrer une lettre entre 'a' et 'j' : \n"
                    "M :menu\n: ");
@@ -73,7 +74,7 @@ void jeu(){
             } while (lettre != '\n' && lettre != EOF);*/
             //</editor-fold>
 
-            //<editor-fold desc="De A à 0 ou B à 1 ...">
+            //<editor-fold desc="entrées des lettres">
             switch (lettre) {
                 case 'a':
                     co1 = 1;
@@ -114,14 +115,18 @@ void jeu(){
             //</editor-fold>
 
         }while (co1==111);
+
+        //<editor-fold desc="entrées des nombres">
         do {
             printf("Entrer un nombre entre 1 et 10 : ");
             scanf("%d",&co2);
         } while ((co2 < 1) || (co2 > 10));
+        //</editor-fold>
 
         co2--;
         co1--;
 
+        //<editor-fold desc="reponse des coordonnées si elle a toucher ou pas un bateau">
         switch (nombres[co2][co1]) {
             case 0:
                 printf("\nPlouf\n\n");
@@ -138,9 +143,13 @@ void jeu(){
                 printf("\nDeja fait\n\n");
                 break;
         }
-        nombres[co2][co1] = 2;
+        //</editor-fold>
+        //</editor-fold>
 
-        /*printf("    A  B  C  D  E  F  G  H  I  J\n");             //voir les bateaux
+        nombres[co2][co1] = 2;                                      //pour définir la case comme déja touchée
+
+        //<editor-fold desc="Voir les bateaux">
+        /*printf("    A  B  C  D  E  F  G  H  I  J\n");
         for (ligne = 0; ligne <= 9; ligne++) {
             printf("%2d",ligne+1);
             for (col = 0; col <= 9; col++) {
@@ -149,7 +158,11 @@ void jeu(){
                     printf("\n");
                 }
             }
-        }*/
+        }
+         */
+        //</editor-fold>
+
+        //<editor-fold desc="Actualisation et affichage du tableau">
         system("Pause\n");
         system("cls");
         printf("\n--------------JOUER---------------\n\n");
@@ -163,9 +176,10 @@ void jeu(){
                 }
             }
         }
+        //</editor-fold>
     }while (d!=17);
 
-    printf("Votre Score :%d",coup);
+    printf("Votre Score :%d",coup);                                 //donne le score (nombre de coup)
     system("Pause");
 }
 
