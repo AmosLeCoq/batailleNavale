@@ -14,7 +14,6 @@ void jeu(){
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
     int coup=0;                         // Nombre de coup
-    int fin=0;
 
     srand((unsigned) time(NULL));
 
@@ -69,10 +68,11 @@ void jeu(){
             scanf("%c",&lettre);
 
             //<editor-fold desc="Vide le buffer">
-            while (lettre == '\n' && lettre != EOF)
-            {
+
+
+           /* do {
                 lettre = getchar();
-            }
+            } while (lettre != '\n' && lettre != EOF);*/
             //</editor-fold>
 
             //<editor-fold desc="De A à 0 ou B à 1 ...">
@@ -108,7 +108,6 @@ void jeu(){
                     co1 = 10;
                     break;
                 case 'm':
-                    fin=1;
                     system("cls");
                     return;
                 default: co1=111;
@@ -121,6 +120,7 @@ void jeu(){
             printf("Entrer un nombre entre 1 et 10 : ");
             scanf("%d",&co2);
         } while ((co2 < 1) || (co2 > 10));
+
         co2--;
         co1--;
 
