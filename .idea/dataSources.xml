@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="règle" uuid="aa1298c0-75bb-44ef-b3fe-3043b50ca9f5">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:P:\1er_année\MA\MA-20\batailleNavale\deroulement\règle.bmpr</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Score" uuid="2fc01995-de54-4387-9aa1-d892f6c2e732">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:P:\1er_année\MA\MA-20\batailleNavale\deroulement\Score.bmpr</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -14,7 +14,7 @@ void jeu(){
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
     int coup=0;                         // Nombre de coup
-
+    int fin=0;
 
     srand((unsigned) time(NULL));
 
@@ -64,7 +64,8 @@ void jeu(){
     do {
 
         do {
-            printf("\nEntrer une lettre entre a et j : ");
+            printf("\nEntrer une lettre entre 'a' et 'j' : \n"
+                   "M :menu\n: ");
             scanf("%c",&lettre);
 
             //<editor-fold desc="Vide le buffer">
@@ -106,6 +107,10 @@ void jeu(){
                 case 'j':
                     co1 = 10;
                     break;
+                case 'm':
+                    fin=1;
+                    system("cls");
+                    return;
                 default: co1=111;
                     break;
             }
@@ -121,18 +126,18 @@ void jeu(){
 
         switch (nombres[co2][co1]) {
             case 0:
-                printf("\nPlouf\n");
+                printf("\nPlouf\n\n");
                 coup++;
                 nombres2[co2][co1] = '?';
                 break;
             case 1:
-                printf("\nToucher\n");
+                printf("\nToucher\n\n");
                 coup++;
                 d++;
                 nombres2[co2][co1] = 'X';
                 break;
             case 2:
-                printf("\nDeja fait\n");
+                printf("\nDeja fait\n\n");
                 break;
         }
         nombres[co2][co1] = 2;
@@ -147,11 +152,12 @@ void jeu(){
                 }
             }
         }*/
-
+        system("Pause\n");
         system("cls");
-        printf("\n    A  B  C  D  E  F  G  H  I  J\n");
+        printf("\n--------------JOUER---------------\n\n");
+        printf("    A  B  C  D  E  F  G  H  I  J\n");
         for (ligne = 0; ligne <= 9; ligne++) {
-            printf("%2d",ligne+1);
+            printf("%2d", ligne + 1);
             for (col = 0; col <= 9; col++) {
                 printf("%3c", nombres2[ligne][col]);
                 if (col >= 9) {
@@ -159,7 +165,6 @@ void jeu(){
                 }
             }
         }
-
     }while (d!=17);
 
     //<editor-fold desc="Bateau de 2 random à finir">
@@ -202,6 +207,7 @@ int main() {
 
     do{
         system("cls");
+        printf("Bataille Navale\n\n");
         printf("1 Jouer\n");
         printf("2 regle\n");
         printf("3 Quitter\n");
