@@ -7,8 +7,6 @@ void jeu(){
     int nombres[10][10];                // Tableau principale
     char nombres2[10][10];              // Tableau secondaire (case touchée)
     int ligne, col;                     // Pour definire le tableau
-    int po1, po2;                       // Ramdom position
-    int binnaire;                       // Nombre random entre 0 et 1, pour orienter les bateaux verticalement ou orientalement
     int i;                              // Pour des boucles for
     int co1, co2;                       // Les coordonnée ex. nombres[co2][co1]=1; ligne 123
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
@@ -166,22 +164,6 @@ void jeu(){
             }
         }
     }while (d!=17);
-
-    //<editor-fold desc="Bateau de 2 random à finir">
-    /*
-    po1=1+rand()%9;
-    po2=1+rand()%9;
-    binnaire=1+rand()%2;
-    nombres[po1][po2]=1;
-    for (int i=0;i<=1;i++) {
-        if (binnaire==1){
-            nombres[po1++][po2]=1;
-        } else{
-            nombres[po1][po2++]=1;
-        }
-    }
-     */
-//</editor-fold>
 
     printf("Votre Score :%d",coup);
     system("Pause");
