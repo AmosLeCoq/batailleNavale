@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 
 
@@ -59,20 +58,11 @@ void jeu(){
     //</editor-fold> l
 
     do {
-
         //<editor-fold desc="entrées des coordonnées">
         do {
             printf("\nEntrer une lettre entre 'a' et 'j' : \n"
                    "M :menu\n: ");
             scanf("%c",&lettre);
-
-            //<editor-fold desc="Vide le buffer">
-
-
-           /* do {
-                lettre = getchar();
-            } while (lettre != '\n' && lettre != EOF);*/
-            //</editor-fold>
 
             //<editor-fold desc="entrées des lettres">
             switch (lettre) {
@@ -113,7 +103,6 @@ void jeu(){
                     break;
             }
             //</editor-fold>
-
         }while (co1==111);
 
         //<editor-fold desc="entrées des nombres">
@@ -158,8 +147,8 @@ void jeu(){
                     printf("\n");
                 }
             }
-        }
-         */
+        }*/
+
         //</editor-fold>
 
         //<editor-fold desc="Actualisation et affichage du tableau">
@@ -225,4 +214,3 @@ int main() {
         }
     }while (fin!=5);
 }
-
