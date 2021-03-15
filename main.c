@@ -1,6 +1,7 @@
 //Auteur: Amos Le Coq
-
-
+//Projet: Bataille Navale
+//version: 0.1
+//Date: 15.03.21
 
 #include <stdio.h>
 #include <stdlib.h>
