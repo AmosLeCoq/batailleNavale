@@ -1,3 +1,7 @@
+//Auteur: Amos Le Coq
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
