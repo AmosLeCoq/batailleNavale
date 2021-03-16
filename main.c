@@ -1,11 +1,29 @@
 //Auteur: Amos Le Coq
 //Projet: Bataille Navale
 //version: 0.1
-//Date: 15.03.21
+//Date: 16.03.21
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
+
+
+
+int bateau(int nombreC){       //nombreC: nombre de case du bateau
+    int rand1,rand2,rand3;
+    srand(time(NULL));
+
+    rand1=(rand()+1)%2;
+    rand2=(rand()+1)%2;
+    rand3=(rand()+1)%2;
+
+
+
+
+
+
+}
 
 void jeu(){
     int nombres[10][10];                // Tableau principale
@@ -259,3 +277,83 @@ int main() {
         }
     }while (fin!=5);
 }
+
+
+
+
+
+
+/*
+ * #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int main() {
+    int nombres[10][10];
+    int ligne, col;
+    int rand1,rand2,rand3;
+    int nombresC;
+    int i,j;
+
+    srand(time(NULL));
+
+    rand1=(rand()+1)%10;
+    rand2=(rand()+1)%10;
+    rand3=(rand()+1)%4;
+
+
+    for (ligne = 0; ligne <= 9; ligne++) {
+        for (col = 0; col <= 9; col++) {
+            nombres[ligne][col] = 0;
+        }
+    }
+    printf("%d %d %d %d",rand1,rand2,rand3);
+    scanf("%d",&nombresC);
+
+    nombres[rand1][rand2]=1;
+
+    rand3=0;
+
+
+    switch (rand3) {
+        case 0:
+            for (i=0;i<nombresC-1;i++) {
+                if((rand1>=0)&&(rand1<10)){
+                    nombres[rand1++][rand2];
+                    nombres[rand1][rand2]=1;
+                } else  {
+                    while (nombres[rand1][rand2]!=0){
+                        rand1--;
+                    }
+                    nombres[rand1][rand2]=1;
+                    if((rand1>=0)&&(rand1<10)){
+                        nombres[rand1--][rand2];
+                        nombres[rand1][rand2]=1;
+                    }
+                }
+            }
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+
+    }
+
+
+
+    for (ligne = 0; ligne <= 9; ligne++) {
+        printf("%2d",ligne+1);
+        for (col = 0; col <= 9; col++) {
+            printf("%3d", nombres[ligne][col]);
+            if (col >= 9) {
+                printf("\n");
+            }
+        }
+    }
+}
+
+ */
+
