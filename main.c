@@ -1,29 +1,12 @@
 //Auteur: Amos Le Coq
 //Projet: Bataille Navale
 //version: 0.1
-//Date: 16.03.21
+//Date: 17.03.21
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-
-
-
-int bateau(int nombreC){       //nombreC: nombre de case du bateau
-    int rand1,rand2,rand3;
-    srand(time(NULL));
-
-    rand1=(rand()+1)%2;
-    rand2=(rand()+1)%2;
-    rand3=(rand()+1)%2;
-
-
-
-
-
-
-}
 
 void jeu(){
     int nombres[10][10];                // Tableau principale
@@ -34,6 +17,20 @@ void jeu(){
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
     int coup=0;                         // Nombre de coup
+
+    void tableau(){
+        printf("\n--------------JOUER---------------\n\n");
+        printf("    A  B  C  D  E  F  G  H  I  J\n");
+        for (ligne = 0; ligne <= 9; ligne++) {
+            printf("%2d",ligne+1);
+            for (col = 0; col <= 9; col++) {
+                printf("%3c", nombres2[ligne][col]);
+                if (col >= 9) {
+                    printf("\n");
+                }
+            }
+        }
+    }
 
      //<editor-fold desc="Mise à zero des 2 tableaux">
      /**
@@ -58,23 +55,16 @@ void jeu(){
     /**
      * Affiche le tableau 2 (char pour l'affichage)
      */
-    printf("--------------JOUER---------------\n\n");
-    printf("    A  B  C  D  E  F  G  H  I  J\n");
-    for (ligne = 0; ligne <= 9; ligne++) {
-        printf("%2d",ligne+1);
-        for (col = 0; col <= 9; col++) {
-            printf("%3c", nombres2[ligne][col]);
-            if (col >= 9) {
-                printf("\n");
-            }
-        }
-    }
+        tableau();
     //</editor-fold>
 
         //<editor-fold desc="code à remplacer en random (mise en place des bateaux)">
         /**
          * positionne les bateaux sur le tableau 1
          */
+
+
+
         for (i = 0; i < 5; i++) {           //bateau 5
             nombres[0][i] = 1;
         }
@@ -207,21 +197,13 @@ void jeu(){
          */
         system("Pause\n");
         system("cls");
-        printf("\n--------------JOUER---------------\n\n");
-        printf("    A  B  C  D  E  F  G  H  I  J\n");
-        for (ligne = 0; ligne <= 9; ligne++) {
-            printf("%2d", ligne + 1);
-            for (col = 0; col <= 9; col++) {
-                printf("%3c", nombres2[ligne][col]);
-                if (col >= 9) {
-                    printf("\n");
-                }
-            }
-        }
+        printf("\n");
+        tableau();
+
         //</editor-fold>
     }while (d!=17);
 
-    printf("Votre Score :%d",coup);                                 //donne le score (nombre de coup)
+    printf("\nVotre Score :%d\n\n",coup);                                 //donne le score (nombre de coup)
     system("Pause");
 }
 void regle(){
@@ -277,6 +259,17 @@ int main() {
         }
     }while (fin!=5);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
