@@ -1,30 +1,42 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include<string.h>
 
 int ecrire(){
     int a;
+    char nom[20];
 
     FILE *fp;
 
     scanf("%d",&a);
+    scanf("%s",&nom);
 
+    strcat(nom,".txt");
+    fp=fopen(nom,"w");
 
-    fp = fopen("a.txt","w");
+   // fp = fopen("a.txt","w");
     fprintf(fp,"%d",a);
     fclose(fp);
-
 }
 
 int lire(){
     int d;
+    char nom[20];
 
     FILE *fp;
 
-    fp = fopen("a.txt","r");
-    fscanf(fp, "%d",&d);
+    scanf("%s",&nom);
+
+    strcat(nom,".txt");
+
+    fp=fopen(nom,"r");
+
+    //fp = fopen("a.txt","r");
+    fscanf(fp,"%d",&d);
     printf("%d",d);
     fclose(fp);
+    printf("\n");
 }
 
 int main(){
@@ -49,4 +61,6 @@ int main(){
     }
 
 }
+
+
 
