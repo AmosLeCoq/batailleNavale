@@ -6,7 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
+int score;
 
 void jeu(){
     int nombres[10][10];                // Tableau principale
@@ -203,6 +205,7 @@ void jeu(){
         //</editor-fold>
     }while (d!=17);
 
+    score=coup;
     printf("\nVotre Score :%d\n\n",coup);                                 //donne le score (nombre de coup)
     system("Pause");
 }
@@ -226,6 +229,49 @@ void aide(){
            "? = Pas toucher de bateau\n\n");
     system("Pause");
 }
+
+void connexion(){
+
+    int fin;
+    int t;
+    char nom[20];
+
+    FILE *fp;
+
+    printf("Votre pseudo: ");
+    scanf("%s",&nom);
+    printf("1 Votre meilleur score\n");
+    printf("2 ..\n");
+    printf("3 Quitter: \n");
+    scanf("%d",&fin);
+
+    strcat(nom,".txt");
+    fp=fopen(nom,"w");
+    fprintf(fp,"%d",score);
+
+    switch (fin) {
+        case 1:
+            fscanf(fp,"%d",&t);
+            printf("%d",t);
+            break;
+        case 2:
+            strcat(nom,".txt");
+            fp=fopen(nom,"w");
+            fprintf(fp,"%d",score);
+            break;
+        case 3:
+            return;
+    }
+
+
+
+    fclose(fp);
+    system("Pause");
+}
+
+
+
+
 int main() {
     int menu;
     int fin;        //ligne 251
@@ -236,7 +282,8 @@ int main() {
         printf("1 Jouer\n");
         printf("2 Regle\n");
         printf("3 Aide\n");
-        printf("4 Quitter\n\n: ");
+        printf("4 connexion\n");
+        printf("5 Quitter\n\n: ");
         scanf("%d",&menu);
         switch (menu) {
             case 1:
@@ -253,100 +300,13 @@ int main() {
                 aide();
                 break;
             case 4:
+                system("cls");
+                connexion();
+                break;
+            case 5:
                 fin=5;
             default:
                 break;
         }
     }while (fin!=5);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
- * #include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-
-int main() {
-    int nombres[10][10];
-    int ligne, col;
-    int rand1,rand2,rand3;
-    int nombresC;
-    int i,j;
-
-    srand(time(NULL));
-
-    rand1=(rand()+1)%10;
-    rand2=(rand()+1)%10;
-    rand3=(rand()+1)%4;
-
-
-    for (ligne = 0; ligne <= 9; ligne++) {
-        for (col = 0; col <= 9; col++) {
-            nombres[ligne][col] = 0;
-        }
-    }
-    printf("%d %d %d %d",rand1,rand2,rand3);
-    scanf("%d",&nombresC);
-
-    nombres[rand1][rand2]=1;
-
-    rand3=0;
-
-
-    switch (rand3) {
-        case 0:
-            for (i=0;i<nombresC-1;i++) {
-                if((rand1>=0)&&(rand1<10)){
-                    nombres[rand1++][rand2];
-                    nombres[rand1][rand2]=1;
-                } else  {
-                    while (nombres[rand1][rand2]!=0){
-                        rand1--;
-                    }
-                    nombres[rand1][rand2]=1;
-                    if((rand1>=0)&&(rand1<10)){
-                        nombres[rand1--][rand2];
-                        nombres[rand1][rand2]=1;
-                    }
-                }
-            }
-            break;
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-
-    }
-
-
-
-    for (ligne = 0; ligne <= 9; ligne++) {
-        printf("%2d",ligne+1);
-        for (col = 0; col <= 9; col++) {
-            printf("%3d", nombres[ligne][col]);
-            if (col >= 9) {
-                printf("\n");
-            }
-        }
-    }
-}
-
- */
-
