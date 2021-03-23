@@ -1,7 +1,7 @@
 //Auteur: Amos Le Coq
 //Projet: Bataille Navale
 //version: 0.1
-//Date: 17.03.21
+//Date: 23.03.21
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -60,6 +60,7 @@ void jeu(){
      * Affiche le tableau 2 (char pour l'affichage)
      */
         tableau();
+
     //</editor-fold>
 
         //<editor-fold desc="code à remplacer en random (mise en place des bateaux)">
@@ -182,8 +183,8 @@ void jeu(){
 
         //<editor-fold desc="Voir les bateaux">
 
-        /*printf("    A  B  C  D  E  F  G  H  I  J\n");
-        for (ligne = 0; ligne <= 9; ligne++) {
+       printf("    A  B  C  D  E  F  G  H  I  J\n");
+        /*for (ligne = 0; ligne <= 9; ligne++) {
             printf("%2d",ligne+1);
             for (col = 0; col <= 9; col++) {
                 printf("%3d", nombres[ligne][col]);
@@ -209,7 +210,7 @@ void jeu(){
 
     score=coup;
     fp=fopen(nom,"w");
-    fprintf(fp,"%d",coup);
+    fprintf(fp,"%d",coup);                                                 //enregistre le score
     fclose(fp);
 
     printf("\nVotre Score :%d\n\n",score);                                 //donne le score (nombre de coup)
@@ -246,21 +247,15 @@ void connexion(){
     */
 
        int a;
-       //char nom[20];
 
-       //FILE *fp;
-
-       printf("Ton Nom: ");
+       printf("\nTon Nom: ");
        scanf("%s",&nom);
 
-       //printf("Le score: ");
-       //scanf("%d",&a);
-
-
        strcat(nom,".txt");
-       //fp=fopen(nom,"w");
 
-       //fprintf(fp,"%d",a);
+       //fp=fopen(nom,"w");
+       //fprintf(fp,"%d",i);
+
        fclose(fp);
    }
 
@@ -270,9 +265,6 @@ void connexion(){
         */
 
        int d;
-       //char nom[20];
-
-       //FILE *fp;
 
        printf("Ton Nom: ");
 
@@ -283,7 +275,7 @@ void connexion(){
        fp=fopen(nom,"r");
 
        fscanf(fp,"%d",&d);
-       printf("%d",d);
+       printf("\nVotre meilleur score: %d",d);
        fclose(fp);
        printf("\n");
    }
@@ -294,11 +286,9 @@ void connexion(){
     switch (i) {
         case 1:
             creer();
-            i=0;
             break;
         case 2:
             connecter();
-            i=0;
             break;
         case 3:
             return;
