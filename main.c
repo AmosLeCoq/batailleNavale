@@ -9,13 +9,15 @@
 #include <string.h>
 
 int score;
+char nom[20];
+FILE *fp;
 
 void jeu(){
     int nombres[10][10];                // Tableau principale
     char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
     int ligne, col;                     // Pour definire le tableau
     int i;                              // Pour des boucles for
-    int co1, co2;                       // Les coordonnée ex. nombres[co2][co1]=1; ligne 123
+    int co1, co2;                       // Les coordonnée ex. nombres[co2][co1]=1;
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
     int coup=0;                         // Nombre de coup
@@ -206,7 +208,11 @@ void jeu(){
     }while (d!=17);
 
     score=coup;
-    printf("\nVotre Score :%d\n\n",coup);                                 //donne le score (nombre de coup)
+    fp=fopen(nom,"w");
+    fprintf(fp,"%d",coup);
+    fclose(fp);
+
+    printf("\nVotre Score :%d\n\n",score);                                 //donne le score (nombre de coup)
     system("Pause");
 }
 void regle(){
@@ -218,12 +224,12 @@ void regle(){
            "\n\t1 Porte-avions (5 cases)\n"
            "\t1 Croiseur (4 cases)\n"
            "\t2 Contre-torpilleurs (3 cases)\n"
-           "\t1 Torpilleur (2 cases)\n");
+           "\t1 Torpilleur (2 cases)\n\n");
     system("Pause");
 }
 void aide(){
     printf("-------------Aide---------------\n\n");
-    printf("Pour entrer les lettres: il faut les mettres en minuscule si il y a plusieurs lettres que la première sera prise en compte.\n\n"
+    printf("Pour entrer les lettres: il faut les mettres en minuscule si il y a plusieurs lettres que la premiere sera prise en compte.\n\n"
            "Pour entrer un chiffre: il faut entrer un chiffre et non une lettre.\n\n"
            "X = Bateau toucher\n\n"
            "? = Pas toucher de bateau\n\n");
@@ -232,40 +238,71 @@ void aide(){
 
 void connexion(){
 
-    int fin;
-    int t;
-    char nom[20];
+    int i=0;
 
-    FILE *fp;
+   void creer(){
+   /**
+    *   premet de crée un fichier .txt     "nom.txt"
+    */
 
-    printf("Votre pseudo: ");
-    scanf("%s",&nom);
-    printf("1 Votre meilleur score\n");
-    printf("2 ..\n");
-    printf("3 Quitter: \n");
-    scanf("%d",&fin);
+       int a;
+       //char nom[20];
 
-    strcat(nom,".txt");
-    fp=fopen(nom,"w");
-    fprintf(fp,"%d",score);
+       //FILE *fp;
 
-    switch (fin) {
+       printf("Ton Nom: ");
+       scanf("%s",&nom);
+
+       //printf("Le score: ");
+       //scanf("%d",&a);
+
+
+       strcat(nom,".txt");
+       //fp=fopen(nom,"w");
+
+       //fprintf(fp,"%d",a);
+       fclose(fp);
+   }
+
+   void connecter(){
+       /**
+        * Permet de voir le fichier grace au nom de la personne     nom.txt
+        */
+
+       int d;
+       //char nom[20];
+
+       //FILE *fp;
+
+       printf("Ton Nom: ");
+
+       scanf("%s",&nom);
+
+       strcat(nom,".txt");
+
+       fp=fopen(nom,"r");
+
+       fscanf(fp,"%d",&d);
+       printf("%d",d);
+       fclose(fp);
+       printf("\n");
+   }
+
+
+    printf("1 : creer\n2 : connecter\n3 : Quitter\n");
+    scanf("%d",&i);
+    switch (i) {
         case 1:
-            fscanf(fp,"%d",&t);
-            printf("%d",t);
+            creer();
+            i=0;
             break;
         case 2:
-            strcat(nom,".txt");
-            fp=fopen(nom,"w");
-            fprintf(fp,"%d",score);
+            connecter();
+            i=0;
             break;
         case 3:
             return;
     }
-
-
-
-    fclose(fp);
     system("Pause");
 }
 
@@ -274,7 +311,7 @@ void connexion(){
 
 int main() {
     int menu;
-    int fin;        //ligne 251
+    int fin;
 
     do{
         system("cls");
