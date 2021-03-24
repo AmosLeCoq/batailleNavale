@@ -8,13 +8,43 @@
 #include <time.h>
 #include <string.h>
 
-int score;
+int score=0;
 char nom[20];
 FILE *fp;
+char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
+int r;
+
+/**
+ * affiche le tableau nombres2
+ */
+void tableau(){
+
+    int ligne,col;
+
+    if(r!=1){
+        for (ligne = 0; ligne <= 9; ligne++) {
+            for (col = 0; col <= 9; col++) {
+                nombres2[ligne][col] = 'O';
+            }
+            r=1;
+        }
+    }
+    printf("\n--------------JOUER---------------\n\n");
+    printf("    A  B  C  D  E  F  G  H  I  J\n");
+    for (ligne = 0; ligne <= 9; ligne++) {
+        printf("%2d",ligne+1);
+        for (col = 0; col <= 9; col++) {
+            printf("%3c", nombres2[ligne][col]);
+            if (col >= 9) {
+                printf("\n");
+            }
+        }
+    }
+}
 
 void jeu(){
     int nombres[10][10][10];                // Tableau principale
-    char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
+    //char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
     int ligne, col;                     // Pour definire le tableau
     int i;                              // Pour des boucles for
     int co1, co2;                       // Les coordonnée ex. nombres[co2][co1]=1;
@@ -32,20 +62,6 @@ void jeu(){
 
     rand1=rand()%9;
 
-    void tableau(){
-        printf("\n--------------JOUER---------------\n\n");
-        printf("    A  B  C  D  E  F  G  H  I  J\n");
-        for (ligne = 0; ligne <= 9; ligne++) {
-            printf("%2d",ligne+1);
-            for (col = 0; col <= 9; col++) {
-                printf("%3c", nombres2[ligne][col]);
-                if (col >= 9) {
-                    printf("\n");
-                }
-            }
-        }
-    }
-
      //<editor-fold desc="Mise à zero des 2 tableaux">
      /**
       * Défini le tableau1 à 0
@@ -57,11 +73,6 @@ void jeu(){
             }
         }
     }
-    /*for (ligne = 0; ligne <= 9; ligne++) {
-        for (col = 0; col <= 9; col++) {
-            nombres[ligne][col] = 0;
-        }
-    }*/
     /**
      * Défini le tableau2 à 'O'
      */
@@ -80,7 +91,7 @@ void jeu(){
 
     //</editor-fold>
 
-        //<editor-fold desc="code à remplacer en random (mise en place des bateaux)">
+        //<editor-fold desc="code en random (mise en place des bateaux)">
     /**
     * positionne les bateaux sur le tableau 1
     */
@@ -207,19 +218,19 @@ void jeu(){
                     system("cls");
                     return;
                 case 'p':
-                    for (pr=0;pr<=9;pr++) {
+                    for (int a=0;a<=9;a++) {
                         printf("\n--------------JOUER---------------\n\n");
                         printf("    A  B  C  D  E  F  G  H  I  J\n");
                         for (ligne = 0; ligne <= 9; ligne++) {
                             printf("%2d",ligne+1);
                             for (col = 0; col <= 9; col++) {
-                                printf("%3d", nombres[ligne][col][pr]);
+                                printf("%3d", nombres[ligne][col][a]);
                                 if (col >= 9) {
                                     printf("\n");
                                 }
                             }
                         }
-                        printf("tableau numero:%d\n",pr);
+                        printf("tableau numero:%d\n",a);
                     }
                     system("Pause\n");
                     system("cls");
@@ -269,21 +280,6 @@ void jeu(){
 
         nombres[co2][co1][pr] = 2;                                      //pour définir la case comme déja touchée
 
-        //<editor-fold desc="Voir les bateaux">
-
-        /*printf("    A  B  C  D  E  F  G  H  I  J\n");
-         for (ligne = 0; ligne <= 9; ligne++) {
-             printf("%2d",ligne+1);
-             for (col = 0; col <= 9; col++) {
-                 printf("%3d", nombres[ligne][col]);
-                 if (col >= 9) {
-                     printf("\n");
-                 }
-             }
-         }*/
-
-        //</editor-fold>
-
         //<editor-fold desc="Actualisation et affichage du tableau">
         /**
          * Affiche le tableau2 (Char)
@@ -304,6 +300,7 @@ void jeu(){
     printf("\nVotre Score :%d\n\n",score);                                 //donne le score (nombre de coup)
     system("Pause");
 }
+
 void regle(){
     printf("-------------Regle---------------\n\n");
     printf("Le but :  couler tout les bateaux adverses\n\n"
@@ -316,6 +313,7 @@ void regle(){
            "\t1 Torpilleur (2 cases)\n\n");
     system("Pause");
 }
+
 void aide(){
     printf("-------------Aide---------------\n\n");
     printf("Pour entrer les lettres: il faut les mettres en minuscule si il y a plusieurs lettres que la premiere sera prise en compte.\n\n"
@@ -325,49 +323,46 @@ void aide(){
     system("Pause");
 }
 
+/**
+ * premet de crée un fichier .txt     "nom.txt"
+ */
+void creer(){
+    printf("\nTon Nom: ");
+    scanf("%s",&nom);
+
+    strcat(nom,".txt");
+
+    fclose(fp);
+}
+
+/**
+ * Permet de voir le fichier grace au nom de la personne     nom.txt
+ */
+void connecter(){
+
+    int d=0;
+
+    printf("Ton Nom: ");
+
+    scanf("%s",&nom);
+
+    strcat(nom,".txt");
+
+    fp=fopen(nom,"r");
+
+
+    fscanf(fp,"%d",&d);
+
+    printf("\nVotre meilleur score: %d",d);
+
+    fclose(fp);
+    printf("\n");
+}
+
+
 void connexion(){
 
     int i=0;
-
-   void creer(){
-   /**
-    *   premet de crée un fichier .txt     "nom.txt"
-    */
-
-       int a;
-
-       printf("\nTon Nom: ");
-       scanf("%s",&nom);
-
-       strcat(nom,".txt");
-
-       //fp=fopen(nom,"w");
-       //fprintf(fp,"%d",i);
-
-       fclose(fp);
-   }
-
-   void connecter(){
-       /**
-        * Permet de voir le fichier grace au nom de la personne     nom.txt
-        */
-
-       int d;
-
-       printf("Ton Nom: ");
-
-       scanf("%s",&nom);
-
-       strcat(nom,".txt");
-
-       fp=fopen(nom,"r");
-
-       fscanf(fp,"%d",&d);
-       printf("\nVotre meilleur score: %d",d);
-       fclose(fp);
-       printf("\n");
-   }
-
 
     printf("1 : creer\n2 : connecter\n3 : Quitter\n");
     scanf("%d",&i);
