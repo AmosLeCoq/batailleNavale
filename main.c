@@ -3,16 +3,22 @@
 //version: 0.1
 //Date: 23.03.21
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <windows.h>
+
+
 
 int score=0;
 char nom[20];
 FILE *fp;
 char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
 int r;
+
 
 /**
  * affiche le tableau nombres2
@@ -24,27 +30,51 @@ void tableau(){
     if(r!=1){
         for (ligne = 0; ligne <= 9; ligne++) {
             for (col = 0; col <= 9; col++) {
-                nombres2[ligne][col] = 'O';
+                nombres2[ligne][col] = ' ';
             }
             r=1;
         }
     }
-    printf("\n--------------JOUER---------------\n\n");
-    printf("    A  B  C  D  E  F  G  H  I  J\n");
+    printf(" ╔═════╗\n");
+    printf(" ║JOUER║\n");
+    printf(" ╚═════╝\n");
+
+    for (int i=0;i<=9;i++) {
+        if (i==0){
+            printf("╔═══");
+        }
+        printf("╦════");
+    }
+    printf("╗\n");
+    printf("║   ║ A  ║ B  ║ C  ║ D  ║ E  ║ F  ║ G  ║ H  ║ I  ║ J  ║\n");
+    for (int i=0;i<=9;i++) {
+        if (i==0){
+            printf("╠═══");
+        }
+        printf("╬════");
+    }
+    printf("╣\n║");
     for (ligne = 0; ligne <= 9; ligne++) {
-        printf("%2d",ligne+1);
+        printf("%3d",ligne+1);
         for (col = 0; col <= 9; col++) {
-            printf("%3c", nombres2[ligne][col]);
+            printf("║%3c ", nombres2[ligne][col]);
             if (col >= 9) {
-                printf("\n");
+                printf("║\n");
             }
         }
+
+        for (int i=0;i<=9;i++) {
+            if (i==0){
+                printf("╠═══");
+            }
+            printf("╬════");
+        }
+        printf("╣\n║");
     }
 }
 
 void jeu(){
     int nombres[10][10][10];                // Tableau principale
-    //char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
     int ligne, col;                     // Pour definire le tableau
     int i;                              // Pour des boucles for
     int co1, co2;                       // Les coordonnée ex. nombres[co2][co1]=1;
@@ -215,6 +245,7 @@ void jeu(){
                     co1 = 10;
                     break;
                 case 'm':
+                    r=0;
                     system("cls");
                     return;
                 case 'p':
@@ -299,6 +330,7 @@ void jeu(){
 
     printf("\nVotre Score :%d\n\n",score);                                 //donne le score (nombre de coup)
     system("Pause");
+    r=0;
 }
 
 void regle(){
@@ -379,16 +411,14 @@ void connexion(){
     system("Pause");
 }
 
-
-
-
 int main() {
+    SetConsoleOutputCP(65001);
     int menu;
     int fin;
 
     do{
         system("cls");
-        printf("Bataille Navale\n\n");
+        printf("║Bataille Navale║\n\n");
         printf("1 Jouer\n");
         printf("2 Regle\n");
         printf("3 Aide\n");
