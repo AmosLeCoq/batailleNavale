@@ -11,13 +11,12 @@
 #include <string.h>
 #include <windows.h>
 
-
-
 int score=0;
 char nom[20];
 FILE *fp;
 char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
 int r;
+
 
 
 /**
@@ -62,14 +61,23 @@ void tableau(){
                 printf("║\n");
             }
         }
-
-        for (int i=0;i<=9;i++) {
-            if (i==0){
-                printf("╠═══");
+        if (ligne!=9){
+            for (int i=0;i<=9;i++) {
+                if (i==0){
+                    printf("╠═══");
+                }
+                printf("╬════");
             }
-            printf("╬════");
+            printf("╣\n║");
+        }else{
+            for (int i=0;i<=9;i++) {
+                if (i==0){
+                    printf("╚═══");
+                }
+                printf("╩════");
+            }
+            printf("╝\n");
         }
-        printf("╣\n║");
     }
 }
 
@@ -418,12 +426,24 @@ int main() {
 
     do{
         system("cls");
-        printf("║Bataille Navale║\n\n");
-        printf("1 Jouer\n");
-        printf("2 Regle\n");
-        printf("3 Aide\n");
-        printf("4 connexion\n");
-        printf("5 Quitter\n\n: ");
+        printf("╔═══════════════════╗\n");
+        printf("║  Bataille Navale  ║\n");
+        printf("╚═══════════════════╝\n\n");
+        printf("    ╔═══════════╗\n");
+        printf("  ► ║  1: Jouer ║\n");
+        printf("    ╚═══════════╝\n");
+        printf("    ╔═══════════╗\n");
+        printf("  ► ║  2: Règle ║\n");
+        printf("    ╚═══════════╝\n");
+        printf("    ╔═══════════╗\n");
+        printf("  ► ║  3: Aide  ║\n");
+        printf("    ╚═══════════╝\n");
+        printf("    ╔═══════════════╗\n");
+        printf("  ► ║  4: connexion ║\n");
+        printf("    ╚═══════════════╝\n");
+        printf("    ╔════════════╗\n");
+        printf("  ► ║ 5: Quitter ║\n");
+        printf("    ╚════════════╝\n\n:");
         scanf("%d",&menu);
         switch (menu) {
             case 1:
