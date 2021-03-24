@@ -13,7 +13,7 @@ char nom[20];
 FILE *fp;
 
 void jeu(){
-    int nombres[10][10];                // Tableau principale
+    int nombres[10][10][10];                // Tableau principale
     char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
     int ligne, col;                     // Pour definire le tableau
     int i;                              // Pour des boucles for
@@ -21,6 +21,16 @@ void jeu(){
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
     int coup=0;                         // Nombre de coup
+    int pr;
+    int rand1;
+    int bateau2;
+    int bateau30,bateau31;
+    int bateau4;
+    int bateau5;
+
+    srand((unsigned)time(NULL));
+
+    rand1=rand()%9;
 
     void tableau(){
         printf("\n--------------JOUER---------------\n\n");
@@ -40,11 +50,18 @@ void jeu(){
      /**
       * Défini le tableau1 à 0
       */
-    for (ligne = 0; ligne <= 9; ligne++) {
+    for (pr=0;pr<=9;pr++) {
+        for (ligne = 0; ligne <= 9; ligne++) {
+            for (col = 0; col <= 9; col++) {
+                nombres[ligne][col][pr] = 0;
+            }
+        }
+    }
+    /*for (ligne = 0; ligne <= 9; ligne++) {
         for (col = 0; col <= 9; col++) {
             nombres[ligne][col] = 0;
         }
-    }
+    }*/
     /**
      * Défini le tableau2 à 'O'
      */
@@ -59,31 +76,84 @@ void jeu(){
     /**
      * Affiche le tableau 2 (char pour l'affichage)
      */
-        tableau();
+    tableau();
 
     //</editor-fold>
 
         //<editor-fold desc="code à remplacer en random (mise en place des bateaux)">
-        /**
-         * positionne les bateaux sur le tableau 1
-         */
+    /**
+    * positionne les bateaux sur le tableau 1
+    */
 
-
-
-        for (i = 0; i < 5; i++) {           //bateau 5
-            nombres[0][i] = 1;
-        }
-        for (i = 0; i < 4; i++) {           //bateau 4
-            nombres[3][i] = 1;
-        }
-        for (int j = 6; j < 8; j++) {       //bateau 3
-            for (i = 0; i < 3; i++) {
-                nombres[j][i] = 1;
+    for (int j=0;j<=9;j++) {
+        bateau5=rand()%2;
+        if(bateau5==0){
+            for (i=0;i<5;i++) {           //bateau 5
+                nombres[0][i][j]=1;
+            }
+        }else{
+            for (i=0;i<5;i++) {
+                nombres[i][0][j]=1;
             }
         }
-        for (i = 5; i < 7; i++) {           //bateau 2
-            nombres[9][i] = 1;
+        bateau4=rand()%2;
+        if(bateau4==0){
+            for (i=6;i<10;i++) {           //bateau 4
+                nombres[5][i][j]=1;
+            }
+        }else{
+            for (i=5;i<9;i++) {
+                nombres[i][6][j]=1;
+            }
         }
+        bateau30=rand()%2;
+        if(bateau30==0){
+            for (i=1;i<4;i++) {           //bateau 30
+                nombres[7][i][j]=1;
+            }
+        }else{
+            for (i=7;i<10;i++) {
+                nombres[i][1][j]=1;
+            }
+        }
+        bateau31=rand()%2;
+        if(bateau31==0){
+            for (i=7;i<10;i++) {           //bateau 31
+                nombres[1][i][j]=1;
+            }
+        }else{
+            for (i=1;i<4;i++) {
+                nombres[i][7][j]=1;
+            }
+        }
+        bateau2=rand()%2;
+        if(bateau2==0){
+            for (i=3;i<5;i++) {           //bateau 2
+                nombres[2][i][j]=1;
+            }
+        }else{
+            for (i=3;i<5;i++) {
+                nombres[i][3][j]=1;
+            }
+        }
+    }
+
+    pr=rand1;
+
+    /*for (i = 0; i < 5; i++) {           //bateau 5
+        nombres[0][i] = 1;
+    }
+    for (i = 0; i < 4; i++) {           //bateau 4
+        nombres[3][i] = 1;
+    }
+    for (int j = 6; j < 8; j++) {       //bateau 3
+        for (i = 0; i < 3; i++) {
+            nombres[j][i] = 1;
+        }
+    }
+    for (i = 5; i < 7; i++) {           //bateau 2
+        nombres[9][i] = 1;
+    }*/
     //</editor-fold> l
 
     do {
@@ -136,6 +206,24 @@ void jeu(){
                 case 'm':
                     system("cls");
                     return;
+                case 'p':
+                    for (pr=0;pr<=9;pr++) {
+                        printf("\n--------------JOUER---------------\n\n");
+                        printf("    A  B  C  D  E  F  G  H  I  J\n");
+                        for (ligne = 0; ligne <= 9; ligne++) {
+                            printf("%2d",ligne+1);
+                            for (col = 0; col <= 9; col++) {
+                                printf("%3d", nombres[ligne][col][pr]);
+                                if (col >= 9) {
+                                    printf("\n");
+                                }
+                            }
+                        }
+                        printf("tableau numero:%d\n",pr);
+                    }
+                    system("Pause\n");
+                    system("cls");
+                    break;
                 default: co1=11;
                     break;
             }
@@ -160,7 +248,7 @@ void jeu(){
         /**
          * met à jour les tableaux 1 et 2
          */
-        switch (nombres[co2][co1]) {
+        switch (nombres[co2][co1][pr]) {
             case 0:
                 printf("\nPlouf\n\n");
                 coup++;
@@ -179,20 +267,20 @@ void jeu(){
         //</editor-fold>
         //</editor-fold>
 
-        nombres[co2][co1] = 2;                                      //pour définir la case comme déja touchée
+        nombres[co2][co1][pr] = 2;                                      //pour définir la case comme déja touchée
 
         //<editor-fold desc="Voir les bateaux">
 
-       printf("    A  B  C  D  E  F  G  H  I  J\n");
-        /*for (ligne = 0; ligne <= 9; ligne++) {
-            printf("%2d",ligne+1);
-            for (col = 0; col <= 9; col++) {
-                printf("%3d", nombres[ligne][col]);
-                if (col >= 9) {
-                    printf("\n");
-                }
-            }
-        }*/
+        /*printf("    A  B  C  D  E  F  G  H  I  J\n");
+         for (ligne = 0; ligne <= 9; ligne++) {
+             printf("%2d",ligne+1);
+             for (col = 0; col <= 9; col++) {
+                 printf("%3d", nombres[ligne][col]);
+                 if (col >= 9) {
+                     printf("\n");
+                 }
+             }
+         }*/
 
         //</editor-fold>
 
