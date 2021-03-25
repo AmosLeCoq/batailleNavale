@@ -189,20 +189,7 @@ void jeu(){
 
     pr=rand1;
 
-    /*for (i = 0; i < 5; i++) {           //bateau 5
-        nombres[0][i] = 1;
-    }
-    for (i = 0; i < 4; i++) {           //bateau 4
-        nombres[3][i] = 1;
-    }
-    for (int j = 6; j < 8; j++) {       //bateau 3
-        for (i = 0; i < 3; i++) {
-            nombres[j][i] = 1;
-        }
-    }
-    for (i = 5; i < 7; i++) {           //bateau 2
-        nombres[9][i] = 1;
-    }*/
+
     //</editor-fold> l
 
     do {
@@ -223,36 +210,47 @@ void jeu(){
              */
             switch (lettre) {
                 case 'a':
+                case 'A':
                     co1 = 1;
                     break;
                 case 'b':
+                case 'B':
                     co1 = 2;
                     break;
                 case 'c':
+                case 'C':
                     co1 = 3;
                     break;
                 case 'd':
+                case 'D':
                     co1 = 4;
                     break;
                 case 'e':
+                case 'E':
                     co1 = 5;
                     break;
                 case 'f':
+                case 'F':
                     co1 = 6;
                     break;
                 case 'g':
+                case 'G':
                     co1 = 7;
                     break;
                 case 'h':
+                case 'H':
                     co1 = 8;
                     break;
                 case 'i':
+                case 'I':
                     co1 = 9;
                     break;
                 case 'j':
+                case 'J':
                     co1 = 10;
                     break;
                 case 'm':
+                case 'M':
                     r=0;
                     system("cls");
                     return;
@@ -346,11 +344,13 @@ void regle(){
     printf("  ║  Règles   ║\n");
     printf("  ╚═══════════╝\n\n\n");
     printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n");
-    printf(" ║ Le but :  couler tout les bateaux adverses                                       ║\n"
+    printf(" ║ Le but :                                                                         ║\n"
+           " ║         Couler tout les bateaux adverses                                         ║\n"
            " ╠══════════════════════════════════════════════════════════════════════════════════╣\n"
-           " ║ Le fonctionnement :entrer des coordonnees et voir si sa touche un bateau         ║\n"
-           " ║                 si un bateau est toucher il faut detruire                        ║\n"
-           " ║                 toute les cases sur les quelle est le bateau pour le couler      ║\n"
+           " ║ Le fonctionnement :                                                              ║\n"
+           " ║                    Entrer des coordonnees et voir si sa touche un bateau         ║\n"
+           " ║                    si un bateau est toucher il faut detruire                     ║\n"
+           " ║                    toute les cases sur les quelle est le bateau pour le couler   ║\n"
            " ║──────────────────────────────────────────────────────────────────────────────────║\n"
            " ║  il y a :                                                                        ║\n"
            " ║          1 Porte-avions (5 cases)                                                ║\n"
@@ -366,8 +366,8 @@ void aide(){
     printf("  ║   Aide    ║\n");
     printf("  ╚═══════════╝\n\n\n");
     printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n"
-           " ║ Pour entrer les lettres: il faut les mettres en minuscule si il y a plusieurs    ║\n"
-           " ║                          lettres que la premiere sera prise en compte.           ║\n"
+           " ║ Pour entrer les lettres: si il y a plusieurs lettres que, la premiere            ║\n"
+           " ║                          sera prise en compte.                                   ║\n"
            " ║                                                                                  ║\n"
            " ║ Pour entrer un chiffre : il faut entrer un chiffre et non une lettre.            ║\n"
            " ║                                                                                  ║\n"
