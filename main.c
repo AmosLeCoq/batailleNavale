@@ -269,7 +269,7 @@ void jeu(){
                                 }
                             }
                         }
-                        printf("tableau numero:%d\n",a);
+                        printf("\ntableau numero:%d\n",a);
                     }
                     system("Pause\n");
                     system("cls");
@@ -345,25 +345,35 @@ void regle(){
     printf("\n  ╔═══════════╗\n");
     printf("  ║  Règles   ║\n");
     printf("  ╚═══════════╝\n\n\n");
-    printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n ║");
-    printf("  Le but :  couler tout les bateaux adverses\t\t\t\t\t    ║\n ╠══════════════════════════════════════════════════════════════════════════════════╣\n ║"
-           "  Fonctionnement :entrer des coordonnees et voir si sa touche un bateau           ║\n ║\t\t    si un bateau est toucher il faut detruire                       ║\n"
-           " ║\t\t    toute les cases sur les quelle est le bateau pour le couler\n"
-           "\n"
-           "  il y a :"
-           "\n\t   1 Porte-avions (5 cases)\n"
-           "\t   1 Croiseur (4 cases)\n"
-           "\t   2 Contre-torpilleurs (3 cases)\n"
-           "\t   1 Torpilleur (2 cases)\n\n  ");
+    printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n");
+    printf(" ║ Le but :  couler tout les bateaux adverses                                       ║\n"
+           " ╠══════════════════════════════════════════════════════════════════════════════════╣\n"
+           " ║ Le fonctionnement :entrer des coordonnees et voir si sa touche un bateau         ║\n"
+           " ║                 si un bateau est toucher il faut detruire                        ║\n"
+           " ║                 toute les cases sur les quelle est le bateau pour le couler      ║\n"
+           " ║──────────────────────────────────────────────────────────────────────────────────║\n"
+           " ║  il y a :                                                                        ║\n"
+           " ║          1 Porte-avions (5 cases)                                                ║\n"
+           " ║          1 Croiseur (4 cases)                                                    ║\n"
+           " ║          2 Contre-torpilleurs (3 cases)                                          ║\n"
+           " ║          1 Torpilleur (2 cases)                                                  ║\n"
+           " ╚══════════════════════════════════════════════════════════════════════════════════╝\n\n  ");
     system("Pause");
 }
 
 void aide(){
-    printf("-------------Aide---------------\n\n");
-    printf("Pour entrer les lettres: il faut les mettres en minuscule si il y a plusieurs lettres que la premiere sera prise en compte.\n\n"
-           "Pour entrer un chiffre: il faut entrer un chiffre et non une lettre.\n\n"
-           "X = Bateau toucher\n\n"
-           "? = Pas toucher de bateau\n\n");
+    printf("\n  ╔═══════════╗\n");
+    printf("  ║   Aide    ║\n");
+    printf("  ╚═══════════╝\n\n\n");
+    printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n"
+           " ║ Pour entrer les lettres: il faut les mettres en minuscule si il y a plusieurs    ║\n"
+           " ║                          lettres que la premiere sera prise en compte.           ║\n"
+           " ║                                                                                  ║\n"
+           " ║ Pour entrer un chiffre : il faut entrer un chiffre et non une lettre.            ║\n"
+           " ║                                                                                  ║\n"
+           " ║         X = Bateau toucher                                                       ║\n"
+           " ║         ? = Pas toucher de bateau                                                ║\n"
+           " ╚══════════════════════════════════════════════════════════════════════════════════╝\n\n");
     system("Pause");
 }
 
@@ -371,7 +381,13 @@ void aide(){
  * premet de crée un fichier .txt     "nom.txt"
  */
 void creer(){
-    printf("\nTon Nom: ");
+    system("cls");
+
+    printf("\n  ╔═══════════╗\n"
+           "  ║  Ton Nom  ║\n"
+           "  ╚═══════════╝\n\n"
+           "   ►  ");
+
     scanf("%s",&nom);
 
     strcat(nom,".txt");
@@ -385,8 +401,12 @@ void creer(){
 void connecter(){
 
     int d=0;
+    system("cls");
+    printf("\n  ╔═══════════╗\n"
+           "  ║  Ton Nom  ║\n"
+           "  ╚═══════════╝\n\n"
+           "   ►  ");
 
-    printf("Ton Nom: ");
 
     scanf("%s",&nom);
 
@@ -442,15 +462,9 @@ int main() {
 
     do{
         system("cls");
-<<<<<<< HEAD
-        printf(" ╔═══════════════════╗\n");
-        printf(" ║  Bataille Navale  ║\n");
-        printf(" ╚═══════════════════╝\n\n");
-=======
         printf("\n  ╔═══════════════════╗\n");
         printf("  ║  Bataille Navale  ║\n");
         printf("  ╚═══════════════════╝\n\n");
->>>>>>> b017f8b994d4ceb0f1f10c7e7f2ed41f5c160766
         printf("    ╔═══════════╗\n");
         printf("  ► ║  1: Jouer ║\n");
         printf("    ╚═══════════╝\n");
