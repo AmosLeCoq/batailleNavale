@@ -426,9 +426,9 @@ int main() {
 
     do{
         system("cls");
-        printf("╔═══════════════════╗\n");
-        printf("║  Bataille Navale  ║\n");
-        printf("╚═══════════════════╝\n\n");
+        printf(" ╔═══════════════════╗\n");
+        printf(" ║  Bataille Navale  ║\n");
+        printf(" ╚═══════════════════╝\n\n");
         printf("    ╔═══════════╗\n");
         printf("  ► ║  1: Jouer ║\n");
         printf("    ╚═══════════╝\n");
@@ -444,6 +444,7 @@ int main() {
         printf("    ╔════════════╗\n");
         printf("  ► ║ 5: Quitter ║\n");
         printf("    ╚════════════╝\n\n:");
+
         scanf("%d",&menu);
         switch (menu) {
             case 1:
