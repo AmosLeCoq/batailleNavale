@@ -342,15 +342,19 @@ void jeu(){
 }
 
 void regle(){
-    printf("-------------Regle---------------\n\n");
-    printf("Le but :  couler tout les bateaux adverses\n\n"
-           "Fonctionnement :entrer des coordonnees et voir si sa touche un bateau\n\t\tsi un bateau est toucher il faut detruire toute les cases sur les quelle est le bateau pour le couler\n"
+    printf("\n  ╔═══════════╗\n");
+    printf("  ║  Règles   ║\n");
+    printf("  ╚═══════════╝\n\n\n");
+    printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n ║");
+    printf("  Le but :  couler tout les bateaux adverses\t\t\t\t\t    ║\n ╠══════════════════════════════════════════════════════════════════════════════════╣\n ║"
+           "  Fonctionnement :entrer des coordonnees et voir si sa touche un bateau           ║\n ║\t\t    si un bateau est toucher il faut detruire                       ║\n"
+           " ║\t\t    toute les cases sur les quelle est le bateau pour le couler\n"
            "\n"
-           "il y a :"
-           "\n\t1 Porte-avions (5 cases)\n"
-           "\t1 Croiseur (4 cases)\n"
-           "\t2 Contre-torpilleurs (3 cases)\n"
-           "\t1 Torpilleur (2 cases)\n\n");
+           "  il y a :"
+           "\n\t   1 Porte-avions (5 cases)\n"
+           "\t   1 Croiseur (4 cases)\n"
+           "\t   2 Contre-torpilleurs (3 cases)\n"
+           "\t   1 Torpilleur (2 cases)\n\n  ");
     system("Pause");
 }
 
@@ -404,7 +408,19 @@ void connexion(){
 
     int i=0;
 
-    printf("1 : creer\n2 : connecter\n3 : Quitter\n");
+    printf("\n  ╔════════════╗\n");
+    printf("  ║  Connexion ║\n");
+    printf("  ╚════════════╝\n\n\n");
+    printf("    ╔═══════════╗\n");
+    printf("  ► ║  1: Créer ║\n");
+    printf("    ╚═══════════╝\n");
+    printf("    ╔═══════════════╗\n");
+    printf("  ► ║  2: Connecter ║\n");
+    printf("    ╚═══════════════╝\n");
+    printf("    ╔═══════════════╗\n");
+    printf("  ► ║  3: Quitter   ║\n");
+    printf("    ╚═══════════════╝\n");
+
     scanf("%d",&i);
     switch (i) {
         case 1:
@@ -426,9 +442,9 @@ int main() {
 
     do{
         system("cls");
-        printf("╔═══════════════════╗\n");
-        printf("║  Bataille Navale  ║\n");
-        printf("╚═══════════════════╝\n\n");
+        printf("\n  ╔═══════════════════╗\n");
+        printf("  ║  Bataille Navale  ║\n");
+        printf("  ╚═══════════════════╝\n\n");
         printf("    ╔═══════════╗\n");
         printf("  ► ║  1: Jouer ║\n");
         printf("    ╚═══════════╝\n");
