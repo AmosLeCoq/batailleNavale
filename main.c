@@ -454,11 +454,54 @@ void connexion(){
     }
     system("Pause");
 }
+int date(int a){
+
+    int h, min, s, day, mois, an;
+    time_t now;
+
+    fp=fopen("log.txt","a");
+
+    // Renvoie l'heure actuelle
+    time(&now);
+    // Convertir au format heure locale
+    printf("Aujourd'hui est : %s", ctime(&now));
+    struct tm *local = localtime(&now);
+    h = local->tm_hour;
+    min = local->tm_min;
+    s = local->tm_sec;
+    day = local->tm_mday;
+    mois = local->tm_mon + 1;
+    an = local->tm_year + 1900;
+
+    switch (a) {
+        case 1:
+            fprintf(fp,"\n\n-------------------------------------------------------------------\n\nJoue:");
+            break;
+        case 2:
+            fprintf(fp,"\n\nOuverture des règles:");
+            break;
+        case 3:
+            fprintf(fp,"\n\nOuverture de l'aide:");
+            break;
+        case 4:
+            fprintf(fp,"\n\nConnection:");
+            break;
+        case 5:
+            fprintf(fp,"\n\nQuitte le programe:");
+            break;
+    }
+    fprintf(fp,"\nL'heure : %02d:%02d:%02d\n", h, min, s);
+    // Afficher la date courante
+    fprintf(fp,"La date : %02d/%02d/%d\n", day, mois, an);
+    fclose(fp);
+}
 
 int main() {
     SetConsoleOutputCP(65001);
     int menu;
     int fin;
+
+
 
     do{
         system("cls");
@@ -481,29 +524,35 @@ int main() {
         printf("  ► ║ 5: Quitter ║\n");
         printf("    ╚════════════╝\n\n:");
 
+
         scanf("%d",&menu);
         switch (menu) {
             case 1:
                 system("cls");
                 printf("\n");
+                date(1);
                 jeu();
                 break;
             case 2:
                 system("cls");
+                date(2);
                 regle();
                 break;
             case 3:
                 system("cls");
+                date(3);
                 aide();
                 break;
             case 4:
                 system("cls");
+                date(4);
                 connexion();
                 break;
             case 5:
                 fin=5;
-            default:
+                date(5);
                 break;
         }
     }while (fin!=5);
 }
+
