@@ -454,12 +454,12 @@ void connexion(){
     }
     system("Pause");
 }
-int date(int a){
+void date(){
 
     int h, min, s, day, mois, an;
     time_t now;
 
-    fp=fopen("log.txt","a");
+
 
     // Renvoie l'heure actuelle
     time(&now);
@@ -473,9 +473,21 @@ int date(int a){
     mois = local->tm_mon + 1;
     an = local->tm_year + 1900;
 
+    fprintf(fp,"\nL'heure : %02d:%02d:%02d\n", h, min, s);
+    // Afficher la date courante
+    fprintf(fp,"La date : %02d/%02d/%d\n", day, mois, an);
+
+
+}
+
+
+int dateAffichagre(int a){
+
+    fp=fopen("log.txt","a");
+
     switch (a) {
         case 1:
-            fprintf(fp,"\n\n-------------------------------------------------------------------\n\nJoue:");
+            fprintf(fp,"\n\nJoue:");
             break;
         case 2:
             fprintf(fp,"\n\nOuverture des règles:");
@@ -487,12 +499,10 @@ int date(int a){
             fprintf(fp,"\n\nConnection:");
             break;
         case 5:
-            fprintf(fp,"\n\nQuitte le programe:");
+            fprintf(fp,"\n\nQuitte le programe:"
+                       "\n---------------------------------------------------------------------------");
             break;
     }
-    fprintf(fp,"\nL'heure : %02d:%02d:%02d\n", h, min, s);
-    // Afficher la date courante
-    fprintf(fp,"La date : %02d/%02d/%d\n", day, mois, an);
     fclose(fp);
 }
 
@@ -530,27 +540,27 @@ int main() {
             case 1:
                 system("cls");
                 printf("\n");
-                date(1);
+                dateAffichagre(1);
                 jeu();
                 break;
             case 2:
                 system("cls");
-                date(2);
+                dateAffichagre(2);
                 regle();
                 break;
             case 3:
                 system("cls");
-                date(3);
+                dateAffichagre(3);
                 aide();
                 break;
             case 4:
                 system("cls");
-                date(4);
+                dateAffichagre(4);
                 connexion();
                 break;
             case 5:
                 fin=5;
-                date(5);
+                dateAffichagre(5);
                 break;
         }
     }while (fin!=5);
