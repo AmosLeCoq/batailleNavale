@@ -1,8 +1,7 @@
 //Auteur: Amos Le Coq
 //Projet: Bataille Navale
 //version: 0.1
-//Date: 23.03.21
-
+//Date: 29.03.21
 
 
 #include <stdio.h>
@@ -516,8 +515,6 @@ int main() {
     int menu;
     int fin;
 
-
-
     do{
         system("cls");
         printf("\n  ╔═══════════════════╗\n");
@@ -538,7 +535,6 @@ int main() {
         printf("    ╔════════════╗\n");
         printf("  ► ║ 5: Quitter ║\n");
         printf("    ╚════════════╝\n\n:");
-
 
         scanf("%d",&menu);
         switch (menu) {
