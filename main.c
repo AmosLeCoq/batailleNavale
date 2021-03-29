@@ -439,7 +439,7 @@ void connexion(){
     printf("    ╚═══════════════╝\n");
     printf("    ╔═══════════════╗\n");
     printf("  ► ║  3: Quitter   ║\n");
-    printf("    ╚═══════════════╝\n");
+    printf("    ╚═══════════════╝\n\n:");
 
     scanf("%d",&i);
     switch (i) {
@@ -454,11 +454,11 @@ void connexion(){
     }
     system("Pause");
 }
+
 void date(){
 
     int h, min, s, day, mois, an;
     time_t now;
-
 
 
     // Renvoie l'heure actuelle
@@ -487,20 +487,25 @@ int dateAffichagre(int a){
 
     switch (a) {
         case 1:
-            fprintf(fp,"\n\nJoue:");
+            fprintf(fp,"\n\nJoue:\n");
+            date();
             break;
         case 2:
-            fprintf(fp,"\n\nOuverture des règles:");
+            fprintf(fp,"\n\nOuverture des règles:\n");
+            date();
             break;
         case 3:
-            fprintf(fp,"\n\nOuverture de l'aide:");
+            fprintf(fp,"\n\nOuverture de l'aide:\n");
+            date();
             break;
         case 4:
-            fprintf(fp,"\n\nConnection:");
+            fprintf(fp,"\n\nConnection:\n");
+            date();
             break;
         case 5:
-            fprintf(fp,"\n\nQuitte le programe:"
-                       "\n---------------------------------------------------------------------------");
+            fprintf(fp,"\n\nQuitte le programe:\n");
+            date();
+            fprintf(fp,"\n---------------------------------------------------------------------------");
             break;
     }
     fclose(fp);
