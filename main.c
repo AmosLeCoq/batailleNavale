@@ -271,7 +271,6 @@ void jeu(){
                     }
                     system("Pause\n");
                     system("cls");
-                    break;
                 default: co1=11;
                     break;
             }
@@ -330,7 +329,7 @@ void jeu(){
     }while (d!=17);
 
     score=coup;
-    fp=fopen(nom,"w");
+    fp=fopen(nom1,"r+");
     fprintf(fp,"%d",coup);                                                 //enregistre le score
     fclose(fp);
 
@@ -378,7 +377,7 @@ void aide(){
 }
 
 /**
- * premet de crée un fichier .txt     "nom.txt"
+ * premet de crée un fichier .txt dans le "name" "nom.txt"
  */
 void creer(){
     system("cls");
@@ -400,7 +399,7 @@ void creer(){
 }
 
 /**
- * Permet de voir le fichier grace au nom de la personne     nom.txt
+ * Permet de voir le fichier grace au nom de la personne dans le "name"  nom.txt
  */
 void connecter(){
 
@@ -417,7 +416,13 @@ void connecter(){
 
     strcat(nom1,nom);
 
+
     fp=fopen(nom1,"r");
+
+    if(fp==NULL){
+        printf("Erreur votre nom est pas valable\n\n");
+        return;
+    }
 
     fscanf(fp,"%d",&d);
 
@@ -427,7 +432,9 @@ void connecter(){
     printf("\n");
 }
 
-
+/**
+ * Connexion appelle créer ou connecter
+ */
 void connexion(){
 
     int i=0;
@@ -459,11 +466,13 @@ void connexion(){
     system("Pause");
 }
 
+/**
+ *
+ */
 void date(){
 
     int h, min, s, day, mois, an;
     time_t now;
-
 
     // Renvoie l'heure actuelle
     time(&now);
@@ -480,12 +489,14 @@ void date(){
     fprintf(fp,"\nL'heure : %02d:%02d:%02d\n", h, min, s);
     // Afficher la date courante
     fprintf(fp,"La date : %02d/%02d/%d\n", day, mois, an);
-
-
 }
 
-
-int dateAffichagre(int a){
+/**
+ * permet d'afficher la date et l'action dans le log (log.txt)
+ * @param a
+ * @return
+ */
+int log(int a) {
 
     fp=fopen("log.txt","a");
 
@@ -546,27 +557,27 @@ int main() {
             case 1:
                 system("cls");
                 printf("\n");
-                dateAffichagre(1);
+                log(1);
                 jeu();
                 break;
             case 2:
                 system("cls");
-                dateAffichagre(2);
+                log(2);
                 regle();
                 break;
             case 3:
                 system("cls");
-                dateAffichagre(3);
+                log(3);
                 aide();
                 break;
             case 4:
                 system("cls");
-                dateAffichagre(4);
+                log(4);
                 connexion();
                 break;
             case 5:
                 fin=5;
-                dateAffichagre(5);
+                log(5);
                 break;
         }
     }while (fin!=5);
