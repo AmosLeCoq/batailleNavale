@@ -391,6 +391,8 @@ void creer(){
 
     strcat(nom,".txt");
 
+    fp=fopen(nom,"w+");
+
     fclose(fp);
 }
 
