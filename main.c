@@ -12,6 +12,7 @@
 
 int score=0;
 char nom[20];
+char nom1[8] ="name/";
 FILE *fp;
 char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
 int r;
@@ -387,11 +388,13 @@ void creer(){
            "  ╚═══════════╝\n\n"
            "   ►  ");
 
-    scanf("%s",&nom);
+    scanf("%s",nom);
 
     strcat(nom,".txt");
 
-    fp=fopen(nom,"w+");
+    strcat(nom1,nom);
+
+    fp=fopen(nom1,"w+");
 
     fclose(fp);
 }
@@ -408,13 +411,13 @@ void connecter(){
            "  ╚═══════════╝\n\n"
            "   ►  ");
 
-
-    scanf("%s",&nom);
+    scanf("%s",nom);
 
     strcat(nom,".txt");
 
-    fp=fopen(nom,"r");
+    strcat(nom1,nom);
 
+    fp=fopen(nom1,"r");
 
     fscanf(fp,"%d",&d);
 
