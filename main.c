@@ -12,7 +12,7 @@
 
 int score=0;
 char nom[20];
-char nom1[8] ="name/";
+char nom1[30] ="name/";
 FILE *fp;
 char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
 int r;
@@ -420,7 +420,7 @@ void connecter(){
     fp=fopen(nom1,"r");
 
     if(fp==NULL){
-        printf("Erreur votre nom est pas valable\n\n");
+        printf("\nErreur votre nom est pas valable\n\n");
         return;
     }
 
@@ -477,7 +477,7 @@ void date(){
     // Renvoie l'heure actuelle
     time(&now);
     // Convertir au format heure locale
-    printf("Aujourd'hui est : %s", ctime(&now));
+    //printf("Aujourd'hui est : %s", ctime(&now));
     struct tm *local = localtime(&now);
     h = local->tm_hour;
     min = local->tm_min;
@@ -496,7 +496,7 @@ void date(){
  * @param a
  * @return
  */
-int log(int a) {
+void log(int a) {
 
     fp=fopen("log.txt","a");
 
