@@ -12,7 +12,6 @@
 
 int score=0;
 char nom[20];
-char nom1[30] ="name/";
 FILE *fp;
 char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
 int r;
@@ -329,7 +328,7 @@ void jeu(){
     }while (d!=17);
 
     score=coup;
-    fp=fopen(nom1,"r+");
+    fp=fopen(nom,"r+");
     fprintf(fp,"%d",coup);                                                 //enregistre le score
     fclose(fp);
 
@@ -379,23 +378,32 @@ void aide(){
 /**
  * premet de crée un fichier .txt dans le "name" "nom.txt"
  */
-void creer(){
+void creer() {
+    int d = 1;
+
     system("cls");
 
-    printf("\n  ╔═══════════╗\n"
+    printf("\n"
+           "  ╔═══════════╗\n"
            "  ║  Ton Nom  ║\n"
            "  ╚═══════════╝\n\n"
            "   ►  ");
 
-    scanf("%s",nom);
 
-    strcat(nom,".txt");
+    scanf("%s", nom);
 
-    strcat(nom1,nom);
+    strcat(nom, ".txt");
 
-    fp=fopen(nom1,"w+");
+    fp=fopen(nom,"r");
 
-    fclose(fp);
+    if(fp==NULL){
+        fclose(fp);
+        fp = fopen(nom,"w+");
+        fclose(fp);
+    }else{
+        printf("\nErreur ce nom est déjà pris\n\n");
+        fclose(fp);
+    }
 }
 
 /**
@@ -405,7 +413,8 @@ void connecter(){
 
     int d=0;
     system("cls");
-    printf("\n  ╔═══════════╗\n"
+    printf("\n"
+           "  ╔═══════════╗\n"
            "  ║  Ton Nom  ║\n"
            "  ╚═══════════╝\n\n"
            "   ►  ");
@@ -414,10 +423,7 @@ void connecter(){
 
     strcat(nom,".txt");
 
-    strcat(nom1,nom);
-
-
-    fp=fopen(nom1,"r");
+    fp=fopen(nom,"r");
 
     if(fp==NULL){
         printf("\nErreur votre nom est pas valable\n\n");
@@ -426,7 +432,7 @@ void connecter(){
 
     fscanf(fp,"%d",&d);
 
-    printf("\nVotre meilleur score: %d",d);
+    printf("\nVotre meilleur score: %d\n",d);
 
     fclose(fp);
     printf("\n");
@@ -439,7 +445,8 @@ void connexion(){
 
     int i=0;
 
-    printf("\n  ╔════════════╗\n");
+    printf("\n"
+           "  ╔════════════╗\n");
     printf("  ║  Connexion ║\n");
     printf("  ╚════════════╝\n\n\n");
     printf("    ╔═══════════╗\n");
