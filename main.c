@@ -1,7 +1,7 @@
 // Auteur: Amos Le Coq
 // Projet: Bataille Navale
 // Version: 0.1
-// Date: 31.04.21
+// Date: 01.04.21
 // Description : C'est le jeu de la bataille Navale, on peut y jouer il entièrement fonctionnel
 // Aide: Si il y a des beugs merci de me les signaler sur l'addresse e-mail "Amos.Le-Coq@cpnv.ch"
 
