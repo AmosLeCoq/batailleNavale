@@ -1,8 +1,9 @@
-//Auteur: Amos Le Coq
-//Projet: Bataille Navale
-//version: 0.1
-//Date: 29.03.21
-
+// Auteur: Amos Le Coq
+// Projet: Bataille Navale
+// Version: 0.1
+// Date: 31.04.21
+// Description : C'est le jeu de la bataille Navale, on peut y jouer il entièrement fonctionnel
+// Aide: Si il y a des beugs merci de me les signaler sur l'addresse e-mail "Amos.Le-Coq@cpnv.ch"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,10 +17,8 @@ FILE *fp;
 char nombres2[10][10];              // Tableau secondaire tableau du joeur (case touchée)
 int r;
 
-
-
 /**
- * affiche le tableau nombres2
+ * Affiche le tableau nombres2
  */
 void tableau(){
 
@@ -80,28 +79,32 @@ void tableau(){
     }
 }
 
+/**
+ * C'est le jeu
+ */
 void jeu(){
-    int nombres[10][10][10];                // Tableau principale
+    int nombres[10][10][10];            // Tableau principale
     int ligne, col;                     // Pour definire le tableau
     int i;                              // Pour des boucles for
     int co1, co2;                       // Les coordonnée ex. nombres[co2][co1]=1;
     char lettre='s';                    // Variable pour l'entrée d'une coordonnée orientalement
     int d=0;                            // Nombre de case toucher
     int coup=0;                         // Nombre de coup
-    int pr;
-    int rand1;
-    int bateau2;
-    int bateau30,bateau31;
-    int bateau4;
-    int bateau5;
+    int pr;                             // Profondeur du tableau 3D
+    int rand1;                          // Random pour position des bateaux
+    int bateau2;                        // Permet la position du bateau de 2 case
+    int bateau30,bateau31;              // Permet la position des bateaux de 3 case
+    int bateau4;                        // Permet la position du bateau de 4 case
+    int bateau5;                        // Permet la position du bateau de 5 case
+    int coupJ;                          // Les coups des precedentes partie
 
-    srand((unsigned)time(NULL));
+    srand((unsigned)time(NULL));        // Installation pour le random
 
-    rand1=rand()%9;
+    rand1=rand()%9;                     // Définir la variable "rand1"
 
      //<editor-fold desc="Mise à zero des 2 tableaux">
      /**
-      * Défini le tableau1 à 0
+      * Défini le tableau "nombres" à 0
       */
     for (pr=0;pr<=9;pr++) {
         for (ligne = 0; ligne <= 9; ligne++) {
@@ -110,8 +113,9 @@ void jeu(){
             }
         }
     }
+
     /**
-     * Défini le tableau2 à 'O'
+     * Défini le tableau "nombres2" à 'O'
      */
     for (ligne = 0; ligne <= 9; ligne++) {
         for (col = 0; col <= 9; col++) {
@@ -122,17 +126,17 @@ void jeu(){
 
     //<editor-fold desc="affichage du tableau de départ">
     /**
-     * Affiche le tableau 2 (char pour l'affichage)
+     * Affiche le tableau "nombres2" (char pour l'affichage)
      */
     tableau();
 
     //</editor-fold>
 
-        //<editor-fold desc="code en random (mise en place des bateaux)">
+    //<editor-fold desc="code en random (mise en place des bateaux)">
+
     /**
     * positionne les bateaux sur le tableau 1
     */
-
     for (int j=0;j<=9;j++) {
         bateau5=rand()%2;
         if(bateau5==0){
@@ -192,6 +196,7 @@ void jeu(){
     //</editor-fold> l
 
     do {
+
         //<editor-fold desc="entrées des coordonnées">
         /**
          * entrée des données pour la colonne(co1)  et la ligne(co2)
@@ -313,7 +318,7 @@ void jeu(){
         //</editor-fold>
         //</editor-fold>
 
-        nombres[co2][co1][pr] = 2;                                      //pour définir la case comme déja touchée
+        nombres[co2][co1][pr] = 2;                                          // Pour définir la case comme déja touchée
 
         //<editor-fold desc="Actualisation et affichage du tableau">
         /**
@@ -325,51 +330,70 @@ void jeu(){
         tableau();
 
         //</editor-fold>
+
     }while (d!=17);
 
+    //<editor-fold desc="Enregistrement des scores">
     score=coup;
     fp=fopen(nom,"r+");
-    fprintf(fp,"%d",coup);                                                 //enregistre le score
-    fclose(fp);
 
-    printf("\nVotre Score :%d\n\n",score);                                 //donne le score (nombre de coup)
+    fscanf(fp,"%d",&coupJ);
+
+    if(coupJ>coup){                                                         //enregistre le score si il est plus petit que le précédent
+        fclose(fp);
+        fp=fopen(nom,"w");
+        fprintf(fp,"%d",coup);
+    }
+
+    fclose(fp);
+    //</editor-fold>
+
+    printf("\nVotre Score :%d\n\n",score);                                  // Affiche le score (nombre de coup)
     system("Pause");
     r=0;
 }
 
+/**
+ * Affiche les règles
+ */
 void regle(){
-    printf("\n  ╔═══════════╗\n");
-    printf("  ║  Règles   ║\n");
-    printf("  ╚═══════════╝\n\n\n");
-    printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n");
-    printf(" ║ Le but :                                                                         ║\n"
-           " ║         Couler tout les bateaux adverses                                         ║\n"
+    printf("\n"
+           "  ╔═══════════╗\n"
+           "  ║  Règles   ║\n"
+           "  ╚═══════════╝\n\n\n"
+           " ╔══════════════════════════════════════════════════════════════════════════════════╗\n"
+           " ║ Le but :                                                                         ║\n"
+           " ║         Couler tous les bateaux adverses                                         ║\n"
            " ╠══════════════════════════════════════════════════════════════════════════════════╣\n"
            " ║ Le fonctionnement :                                                              ║\n"
            " ║                    Entrer des coordonnees et voir si sa touche un bateau         ║\n"
-           " ║                    si un bateau est toucher il faut detruire                     ║\n"
-           " ║                    toute les cases sur les quelle est le bateau pour le couler   ║\n"
+           " ║                    si un bateau est touché il faut détruire                      ║\n"
+           " ║                    toute les cases sur les quelles est le bateau pour le couler  ║\n"
            " ║──────────────────────────────────────────────────────────────────────────────────║\n"
            " ║  il y a :                                                                        ║\n"
            " ║          1 Porte-avions (5 cases)                                                ║\n"
            " ║          1 Croiseur (4 cases)                                                    ║\n"
            " ║          2 Contre-torpilleurs (3 cases)                                          ║\n"
            " ║          1 Torpilleur (2 cases)                                                  ║\n"
-           " ╚══════════════════════════════════════════════════════════════════════════════════╝\n\n  ");
+           " ╚══════════════════════════════════════════════════════════════════════════════════╝\n\n");
     system("Pause");
 }
 
+/**
+ * Affiche l'aide
+ */
 void aide(){
-    printf("\n  ╔═══════════╗\n");
-    printf("  ║   Aide    ║\n");
-    printf("  ╚═══════════╝\n\n\n");
-    printf(" ╔══════════════════════════════════════════════════════════════════════════════════╗\n"
-           " ║ Pour entrer les lettres: si il y a plusieurs lettres que, la premiere            ║\n"
+    printf("\n"
+           "  ╔═══════════╗\n"
+           "  ║   Aide    ║\n"
+           "  ╚═══════════╝\n\n\n"
+           " ╔══════════════════════════════════════════════════════════════════════════════════╗\n"
+           " ║ Pour entrer les lettres: si il y a plusieurs lettres que, la première            ║\n"
            " ║                          sera prise en compte.                                   ║\n"
            " ║                                                                                  ║\n"
            " ║ Pour entrer un chiffre : il faut entrer un chiffre et non une lettre.            ║\n"
            " ║                                                                                  ║\n"
-           " ║         X = Bateau toucher                                                       ║\n"
+           " ║         X = Bateau touché                                                        ║\n"
            " ║         ? = Pas toucher de bateau                                                ║\n"
            " ╚══════════════════════════════════════════════════════════════════════════════════╝\n\n");
     system("Pause");
@@ -379,7 +403,6 @@ void aide(){
  * premet de crée un fichier .txt dans le "name" "nom.txt"
  */
 void creer() {
-    int d = 1;
 
     system("cls");
 
@@ -396,12 +419,12 @@ void creer() {
 
     fp=fopen(nom,"r");
 
-    if(fp==NULL){
+    if(fp==NULL){                                   //permet de vérifier le compte si il existe déjà
         fclose(fp);
         fp = fopen(nom,"w+");
         fclose(fp);
     }else{
-        printf("\nErreur ce nom est déjà pris\n\n");
+        printf("\nErreur: Ce nom est déjà pris\n\n");
         fclose(fp);
     }
 }
@@ -426,13 +449,13 @@ void connecter(){
     fp=fopen(nom,"r");
 
     if(fp==NULL){
-        printf("\nErreur votre nom est pas valable\n\n");
+        printf("\nErreur: Votre nom n'est pas valable\n\n");
         return;
     }
 
     fscanf(fp,"%d",&d);
 
-    printf("\nVotre meilleur score: %d\n",d);
+    printf("\nVotre meilleur score est: %d\n",d);
 
     fclose(fp);
     printf("\n");
@@ -474,7 +497,7 @@ void connexion(){
 }
 
 /**
- *
+ * met à jour la date pour les logs
  */
 void date(){
 
@@ -500,8 +523,7 @@ void date(){
 
 /**
  * permet d'afficher la date et l'action dans le log (log.txt)
- * @param a
- * @return
+ * entrée: @param a
  */
 void log(int a) {
 
@@ -531,8 +553,12 @@ void log(int a) {
             break;
     }
     fclose(fp);
+    return;
 }
 
+/**
+ * C'est le menu du jeu
+ */
 int main() {
     SetConsoleOutputCP(65001);
     int menu;
@@ -540,24 +566,25 @@ int main() {
 
     do{
         system("cls");
-        printf("\n  ╔═══════════════════╗\n");
-        printf("  ║  Bataille Navale  ║\n");
-        printf("  ╚═══════════════════╝\n\n");
-        printf("    ╔═══════════╗\n");
-        printf("  ► ║  1: Jouer ║\n");
-        printf("    ╚═══════════╝\n");
-        printf("    ╔═══════════╗\n");
-        printf("  ► ║  2: Règle ║\n");
-        printf("    ╚═══════════╝\n");
-        printf("    ╔═══════════╗\n");
-        printf("  ► ║  3: Aide  ║\n");
-        printf("    ╚═══════════╝\n");
-        printf("    ╔═══════════════╗\n");
-        printf("  ► ║  4: connexion ║\n");
-        printf("    ╚═══════════════╝\n");
-        printf("    ╔════════════╗\n");
-        printf("  ► ║ 5: Quitter ║\n");
-        printf("    ╚════════════╝\n\n:");
+        printf("\n"
+               "  ╔═══════════════════╗\n"
+               "  ║  Bataille Navale  ║\n"
+               "  ╚═══════════════════╝\n\n"
+               "    ╔═══════════╗\n"
+               "  ► ║  1: Jouer ║\n"
+               "    ╚═══════════╝\n"
+               "    ╔═══════════╗\n"
+               "  ► ║  2: Règle ║\n"
+               "    ╚═══════════╝\n"
+               "    ╔═══════════╗\n"
+               "  ► ║  3: Aide  ║\n"
+               "    ╚═══════════╝\n"
+               "    ╔═══════════════╗\n"
+               "  ► ║  4: connexion ║\n"
+               "    ╚═══════════════╝\n"
+               "    ╔════════════╗\n"
+               "  ► ║ 5: Quitter ║\n"
+               "    ╚════════════╝\n\n:");
 
         scanf("%d",&menu);
         switch (menu) {
