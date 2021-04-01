@@ -582,4 +582,3 @@ int main() {
         }
     }while (fin!=5);
 }
-
