@@ -525,7 +525,7 @@ void date(){
  * permet d'afficher la date et l'action dans le log (log.txt)
  * entrée: @param a
  */
-void log(int a) {
+void logs(int a) {
 
     fp=fopen("log.txt","a");
 
@@ -591,27 +591,27 @@ int main() {
             case 1:
                 system("cls");
                 printf("\n");
-                log(1);
+                logs(1);
                 jeu();
                 break;
             case 2:
                 system("cls");
-                log(2);
+                logs(2);
                 regle();
                 break;
             case 3:
                 system("cls");
-                log(3);
+                logs(3);
                 aide();
                 break;
             case 4:
                 system("cls");
-                log(4);
+                logs(4);
                 connexion();
                 break;
             case 5:
                 fin=5;
-                log(5);
+                logs(5);
                 break;
         }
     }while (fin!=5);
